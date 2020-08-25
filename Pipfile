@@ -10,7 +10,6 @@ django = "*"
 psycopg2-binary = "*"
 django-allauth = "*"
 django-crispy-forms = "*"
-django-phone-field = "*"
 
 [requires]
 python_version = "3.8"

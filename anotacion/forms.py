@@ -1,5 +1,5 @@
 from django import forms
-from models import Anotacion
+from anotacion.models import Anotacion
 
 #from anotacion.models import models
 class AnotacionForm(forms.ModelForm):

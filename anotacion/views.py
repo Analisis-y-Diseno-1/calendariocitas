@@ -34,7 +34,7 @@ def annotationCreate(request, fk):
         anotacion.save()
 
         #return HttpResponseRedirect('/success/')
-        return render(request,'home.html')
+        return HttpResponseRedirect(reverse('/anotacion/'))
 
     else:
         print ("ERROR")

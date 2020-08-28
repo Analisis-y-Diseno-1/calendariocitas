@@ -4,6 +4,24 @@ from cita.models import Cita
 from datetime import datetime
 
 # Create your tests here.
+<<<<<<< HEAD
+
+from anotacion.models import Anotacion
+from django.urls import reverse
+
+class ListaAnotacionesTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        #Create 13 anotaciones for tests
+        number_of_anotaciones = 13
+        for anotacion_num in range(number_of_anotaciones):
+            Anotacion.objects.create(descripcion='Ejemplo anotacion %s' % author_num)
+            
+    def test_view_url_exists_at_desired_location(self): 
+        #Verifica que la url exista
+        resp = self.client.get('/listado_anotaciones') 
+        self.assertEqual(resp.status_code, 200) 
+=======
 class AnnotationViewTest(TestCase):
     '''
     def setUp(self):
@@ -31,3 +49,4 @@ class AnnotationViewTest(TestCase):
         self.assertEqual(test_annotation.descripcion, 'Tiene fiebre')
         self.assertEqual(test_annotation.fecha_hora, fecha)
         
+>>>>>>> 2f6efda4a608e11d1fa6210d8a89eff68809c6c7

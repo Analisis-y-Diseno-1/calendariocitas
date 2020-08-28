@@ -1,4 +1,10 @@
 
 from django import forms
+from django.forms import ModelForm
+from anotacion.models import Anotacion
 
-#from anotacion.models import models
+class CardAnotacion_form(ModelForm):
+    
+    class Meta:
+        model = Anotacion
+        fields = ['descripcion']

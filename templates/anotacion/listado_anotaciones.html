@@ -21,7 +21,7 @@
 			<td>{{ anotacion.descripcion }}</td>
 			<td>
 				<a class="btn btn-primary" href="{% url 'modificar_anotacion' anotacion.no_anotacion %}">Modificar</a>
-				<a class="btn btn-danger" href="#">Eliminar</a>
+				<a class="btn btn-danger" href="{% url 'eliminar_anotacion' anotacion.no_anotacion %}">Eliminar</a>
 			</td>
 		</tr>
 		{% endfor %}

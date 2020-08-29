@@ -4,7 +4,6 @@ from cita.models import Cita
 from datetime import datetime
 
 # Create your tests here.
-<<<<<<< HEAD
 
 from anotacion.models import Anotacion
 from django.urls import reverse
@@ -21,7 +20,6 @@ class ListaAnotacionesTest(TestCase):
         #Verifica que la url exista
         resp = self.client.get('/listado_anotaciones') 
         self.assertEqual(resp.status_code, 200) 
-=======
 class AnnotationViewTest(TestCase):
     '''
     def setUp(self):
@@ -49,4 +47,3 @@ class AnnotationViewTest(TestCase):
         self.assertEqual(test_annotation.descripcion, 'Tiene fiebre')
         self.assertEqual(test_annotation.fecha_hora, fecha)
         
->>>>>>> 2f6efda4a608e11d1fa6210d8a89eff68809c6c7

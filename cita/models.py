@@ -1,6 +1,5 @@
 from django.db import models
-#from anotacion.models import Anotacion
-
+from django.urls import reverse
 # Create your models here.
 class Cita(models.Model):
     fecha = models.DateTimeField()
@@ -9,3 +8,10 @@ class Cita(models.Model):
     estado = models.CharField(max_length=10)
     comentario = models.CharField(max_length=50)
     paciente = models.IntegerField()
+
+    def __str__(self):
+        return self.comentario
+    
+    def get_absolute_url(self):
+        return reverse("cita_detail", kwargs={"pk": self.pk})
+    

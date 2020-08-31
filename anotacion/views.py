@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Anotacion
 from .forms import CardAnotacion_form
@@ -30,6 +30,10 @@ from django.urls import reverse_lazy
 from datetime import datetime 
 
 # Create your views here.
+def eliminar_anotacion(request,id):
+    anotacion = Anotacion.objects.get(no_anotacion=id)
+    anotacion.delete()
+    return redirect(to="listado_anotaciones")
 
 def crear_anotacion(request):
     return render(request,'anotacion/index.html')

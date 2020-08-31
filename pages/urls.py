@@ -1,7 +1,6 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
-from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),

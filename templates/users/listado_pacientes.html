@@ -1,0 +1,42 @@
+{%extends '_base.html'%}
+
+
+{% block content %}
+<h3>
+    Pacientes registrados:
+</h3>
+{% if lista_pacientes %}
+<table class="table table-bordered">
+	<thead>
+		<tr>
+            <td>Correo</td>
+            <td>Nombre completo </td>		
+		</tr>		
+	</thead>
+	<tbody>
+		{% for paciente in lista_pacientes %}
+		<tr>
+			<td>{{ paciente.correo }}</td>
+			<td>{{ paciente.nombre }}         {{ paciente.apellido }}</td>
+			<td>
+                 
+				
+				<a class="btn btn-primary" href="{% url 'modificar_paciente' paciente.correo %}">Modificar Datos</a> 
+				</td>
+		</tr>
+		{% endfor %}
+        {% else %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+		<h1>Aun no se han registrado pacientes!</h1>
+		{% endif %}
+	</tbody>
+</table> 
+{% endblock %}
+

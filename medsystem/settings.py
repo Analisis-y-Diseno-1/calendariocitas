@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'allauth.account',
 
     # Local apps
-    'users.apps.UsersConfig',
+    #'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'cita',
     'anotacion',
+    'users',
 ]
 
 MIDDLEWARE = [

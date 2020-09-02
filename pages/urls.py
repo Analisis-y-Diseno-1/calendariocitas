@@ -1,6 +1,6 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion
-from users.views import listado_pacientes,modificar_paciente
+from users.views import listado_pacientes,modificar_paciente, ingresar_paciente
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     path('eliminar_anotacion/<id>', eliminar_anotacion, name='eliminar_anotacion'),
     path('listado_pacientes/', listado_pacientes, name='listado_pacientes'),
     path('modificar_paciente/<correo>', modificar_paciente, name='modificar_paciente'),
+    path('ingresar_paciente', ingresar_paciente, name='ingresar_paciente'),
 ]

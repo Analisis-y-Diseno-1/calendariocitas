@@ -10,8 +10,36 @@ class pacienteForm(forms.ModelForm):
             'nombre',
             'apellido',
             'telefono',
-            'telefono_emergencia'
+            'telefono_emergencia',
+            'correo',
+            'fecha_nacimiento',
+            'direccion',
+            'descripccion',
+            'sexo',
             ]
+        labels = {
+            'nombre': 'Nombre',
+            'apellido': 'Apellido',
+            'telefono': 'Telefono',
+            'telefono_emergencia': 'Telefono Emergencia',
+            'correo': 'Correo',
+            'fecha_nacimiento': 'Fecha De Nacimiento',
+            'direccion': 'Direccion',
+            'descripccion': 'Descripcion',
+            'sexo': 'Sexo',
+        }
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class':'form-control'}),
+            'apellido': forms.TextInput(attrs={'class':'form-control'}),
+            'telefono': forms.TextInput(attrs={'class':'form-control'}),
+            'telefono_emergencia': forms.TextInput(attrs={'class':'form-control'}),
+            'correo': forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_nacimiento': forms.TextInput(attrs={'class':'form-control'}),
+            'direccion': forms.TextInput(attrs={'class':'form-control'}),
+            'descripccion': forms.TextInput(attrs={'class':'form-control'}),
+            'sexo': forms.TextInput(attrs={'class':'form-control'}),
+        }
+
 
 class RawProductForm(forms.Form):
     nombre      = forms.CharField()

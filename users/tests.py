@@ -80,11 +80,27 @@ class CreatePatient(TestCase):
 
         self.assertEqual(test_Paciente.nombre, 'Henry')
         self.assertEqual(test_Paciente.apellido, 'Leon')
-        self.assertEqual(test_Paciente.telefono, 12345678)
-        self.assertEqual(test_Paciente.telefono_emergencia, 12345678)
-        self.assertEqual(test_Paciente.correo, 'henriscoh1995@gmail.com')
-        self.assertEqual(test_Paciente.fecha_nacimiento, '1995-12-12')
-        self.assertEqual(test_Paciente.direccion, 'zona 6')
-        self.assertEqual(test_Paciente.descripccion, 'sin enfermedades')
-        self.assertEqual(test_Paciente.sexo, 'masculino')
+
+class EditPatient(TestCase):
+    def test_edit_patient(self):
+        test_Paciente = Paciente.objects.create(nombre='Francisco', apellido='Hernández', telefono=12345678, telefono_emergencia=12345678,
+        correo='henriscoh1995@gmail.com', fecha_nacimiento='1995-12-12', direccion='zona 6', sexo='masculino')
+
+        paciente = Paciente.objects.get(correo=test_Paciente.correo)
+
+        paciente.nombre = "Franciscox"
+        paciente.apellido = "Hernandezx"
+
+        paciente.save()
+
+        self.assertEqual(paciente.nombre, 'Franciscox')
+        self.assertEqual(paciente.apellido, 'Hernandezx')
+        self.assertEqual(paciente.telefono, 12345678)
+        self.assertEqual(paciente.telefono_emergencia, 12345678)
+        self.assertEqual(paciente.correo, 'henriscoh1995@gmail.com')
+        self.assertEqual(paciente.direccion, 'zona 6')
+        self.assertEqual(paciente.sexo, 'masculino')
+
+        
+
 

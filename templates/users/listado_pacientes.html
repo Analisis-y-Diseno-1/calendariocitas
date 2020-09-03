@@ -1,3 +1,4 @@
+  
 {%extends '_base.html'%}
 
 
@@ -19,10 +20,9 @@
 			<td>{{ paciente.correo }}</td>
 			<td>{{ paciente.nombre }}         {{ paciente.apellido }}</td>
 			<td>
-                 
-				
 				<a class="btn btn-primary" href="{% url 'modificar_paciente' paciente.correo %}">Modificar Datos</a> 
-				</td>
+				<a class="btn btn-primary" href="{% url 'detalle_paciente' paciente.correo %}">Ver</a> 
+			</td>
 		</tr>
 		{% endfor %}
         {% else %}
@@ -39,4 +39,3 @@
 	</tbody>
 </table> 
 {% endblock %}
-

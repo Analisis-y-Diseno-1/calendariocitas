@@ -88,3 +88,10 @@ class CreatePatient(TestCase):
         self.assertEqual(test_Paciente.descripccion, 'sin enfermedades')
         self.assertEqual(test_Paciente.sexo, 'masculino')
 
+class EditPatient(TestCase):
+    def test_edit_patient(self):
+        test_Paciente = Paciente.objects.create(nombre='Francisco', apellido='Hernández', telefono=12345678, telefono_emergencia=12345678,
+        correo='henriscoh1995@gmail.com', fecha_nacimiento='1995-12-12', direccion='zona 6', sexo='masculino')
+        
+
+

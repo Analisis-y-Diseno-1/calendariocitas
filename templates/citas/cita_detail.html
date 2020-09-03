@@ -65,12 +65,11 @@
         <div class="agregar_nueva">
             {% for field in anotacion_form.visible_fields %}
                 {{field.errors}}
-                <div class="form-group">
-                    {{field.label_tag}}<br>
-                    {{field}}
-                </div>
-                <button class="btn btn-success btn-block" type="submit">Agregar anotacion</button>
             {% endfor %}
+            <form action="{% url 'crear_anotacion' cita.id %}" method='POST'>{% csrf_token %}
+                {{ anotacion_form.as_p }}
+                <input class="btn btn-success btn-block" type='submit' value='Agregar anotación'/>
+            </form>
         </div>
     </div>
 </div>

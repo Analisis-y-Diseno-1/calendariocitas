@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Anotacion
+from cita.models import Cita
 from .forms import CardAnotacion_form
 # Create your views here.
 
@@ -50,19 +51,19 @@ def crear_anotacion(request):
 #            return HttpResponseRedirect('/success/')
 #        return render(request, self.template_name, {'form': form})
 
-def annotationCreate(request, fk):
+def annotationCreate(request, id):
+    #print(id)
+    #return HttpResponseRedirect(reverse('citas'))
+    #return render(request,'citas/cita_detail.html')
+    
     form = AnotacionForm(request.POST)
     
     if form.is_valid():
         anotacion = form.save(commit=False)
         fecha = datetime.now()
         anotacion.fecha_hora = fecha
-        anotacion.id_cita = fk
+        cita = Cita.objects.get(id=id)
+        anotacion.id_cita = cita
         anotacion.save()
 
-        #return HttpResponseRedirect('/success/')
-        return HttpResponseRedirect(reverse('/anotacion/'))
-
-    else:
-        print ("ERROR")
-        return render(request,'anotacion/index.html')
+    return HttpResponseRedirect('/citas/'+id)

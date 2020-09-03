@@ -10,19 +10,17 @@
     <div class="cita">
         <div class="paciente">
             <p>
-                Nombre: <strong>NOMBRE</strong></br>
-                Telefono: <strong>Telefono</strong></br>
-                Telefono Emergencia: <strong>Telefono Emergencia</strong></br>
-                Email: <strong>Email</strong></br>
+                Nombre: <strong>{{cita.paciente.nombre}}</strong></br>
+                Telefono: <strong>{{cita.paciente.telefono}}</strong></br>
+                Telefono Emergencia: <strong>{{cita.paciente.telefono_emergencia}}</strong></br>
+                Email: <strong>{{cita.paciente.correo}}</strong></br>
             </p>
         </div>
         <div class="observaciones">
             <p>
                 <strong>OBSERVACION:</strong>
                 </br>
-                Algun comentario especifico para cada </br>
-                cliente aca es posible </br>
-                agregar algun tipo de alergia u otro.
+                {{cita.paciente.descripccion}}
             </p>
         </div>
         <div class="resumen">
@@ -37,14 +35,7 @@
         </div>
     </div>
     <div class="anotaciones">
-        <div class="agregar_nueva">
-            {% include 'anotacion/anotacion_form.html' %}
-        </div>
-        <div class="lista">
-            <h3>
-                Anotaciones Realizadas:
-            </h3>
-            {% if lista_anotaciones %}
+        {% if cita.anotaciones.all|length > 0%}
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -54,22 +45,33 @@
                         </tr>		
                     </thead>
                     <tbody>
-                        {% for anotacion in lista_anotaciones %}
+                        
+                    {% for anotacion in cita.anotaciones.all %}
                         <tr>
                             <td>{{ anotacion.no_anotacion }}</td>
                             <td>{{ anotacion.descripcion }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{% url 'modificar_anotacion' anotacion.no_anotacion %}">Modificar</a>
-                                <a class="btn btn-danger" href="#">Eliminar</a>
+                                <a class="btn btn-danger mt-1" href="#">Eliminar</a>
                             </td>
                         </tr>
-                        {% endfor %}
+                    {% endfor %}    
                     </tbody>
                 </table> 
-            {% else %}
-                <h1>Aun no se han realizado anotaciones en esta cita!</h1>
-            {% endif %}
-        </div>        
+        {% else %}
+            <h4>Aun no se han realizado anotaciones en esta cita!</h4>
+        {% endif %}
+        
+        <div class="agregar_nueva">
+            {% for field in anotacion_form.visible_fields %}
+                {{field.errors}}
+                <div class="form-group">
+                    {{field.label_tag}}<br>
+                    {{field}}
+                </div>
+                <button class="btn btn-success btn-block" type="submit">Agregar anotacion</button>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

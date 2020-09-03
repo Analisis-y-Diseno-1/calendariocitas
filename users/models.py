@@ -13,5 +13,5 @@ class Paciente(models.Model):
     correo = models.CharField(max_length=100)
     fecha_nacimiento = models.DateField() #DateField(input_formats=settings.DATE_INPUT_FORMATS, null=True, blan=True) para introducir la fecha dd-mm-DDDD
     direccion = models.CharField(max_length=200)
-    descripccion = models.CharField(max_length=500, blank=True, null=True)
+    descripcion = models.CharField(max_length=500, blank=True, null=True)
     sexo = models.CharField(max_length=15)

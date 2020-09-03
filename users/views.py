@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Paciente
 from .forms import pacienteForm
 # Create your views here.
@@ -14,14 +14,29 @@ def modificar_paciente(request,correo): #con este parametro correo haces la busq
     return render(request,'home.html')  #aca cambiale el home.html por la pagina de modificar
 
 def ingresar_paciente(request):
-    form = pacienteForm(request.POST or None)
+    form = pacienteForm(request.POST)
+    #if request.method == 'POST':
     if form.is_valid():
         form.save()
+        #return redirect('pages:listado_pacientes')
+        pacientes=Paciente.objects.all()
+        data={
+            'lista_pacientes':pacientes
+        }
+        return render(request, 'users/listado_pacientes.html',data)
+
+    else:
         form = pacienteForm()
-    context = {
-        'form': form
-    }
-    return render(request, "paciente/ingresar_paciente.html", context)
+    return render(request, 'paciente/ingresar_paciente.html', {'form': form})
+    
+    #form = pacienteForm(request.POST or None)
+   # if form.is_valid():
+   #     form.save()
+   #     form = pacienteForm()
+   # context = {
+   #     'form': form
+   # }
+   # return render(request, "paciente/ingresar_paciente.html", context)
     #form = AnotacionForm(request.POST)
     #return render(request, 'paciente/ingresar_paciente.html', {'form': form})
     #return render(request, "paciente/ingresar_paciente.html")

@@ -102,5 +102,3 @@ class EditPatient(TestCase):
         self.assertEqual(paciente.sexo, 'masculino')
 
         
-
-

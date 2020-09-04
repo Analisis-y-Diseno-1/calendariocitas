@@ -1,6 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
 from django.contrib.auth import get_user_model
+from users.models import Paciente
+from datetime import datetime
+
 class CustomUserTests(TestCase):
 
     def test_create_user(self):
@@ -54,3 +57,48 @@ class SignupTests(TestCase): # new
                          [0].username, self.username)
         self.assertEqual(get_user_model().objects.all()
                          [0].email, self.email)
+
+
+class CreatePatient(TestCase):
+    def test_create_patient2(self):
+        test_Paciente = Paciente.objects.create(nombre='Francisco', apellido='Hernández', telefono=12345678, telefono_emergencia=12345678,
+        correo='henriscoh1995@gmail.com', fecha_nacimiento='1995-12-12', direccion='zona 6', sexo='masculino')
+
+        self.assertEqual(test_Paciente.nombre, 'Francisco')
+        self.assertEqual(test_Paciente.apellido, 'Hernández')
+        self.assertEqual(test_Paciente.telefono, 12345678)
+        self.assertEqual(test_Paciente.telefono_emergencia, 12345678)
+        self.assertEqual(test_Paciente.correo, 'henriscoh1995@gmail.com')
+        self.assertEqual(test_Paciente.fecha_nacimiento, '1995-12-12')
+        self.assertEqual(test_Paciente.direccion, 'zona 6')
+        self.assertEqual(test_Paciente.sexo, 'masculino')
+                
+    
+    def test_create_patient(self):
+        test_Paciente = Paciente.objects.create(nombre='Henry', apellido='Leon', telefono=12345678, telefono_emergencia=12345678,
+        correo='henriscoh1995@gmail.com', fecha_nacimiento='1995-12-12', direccion='zona 6', descripccion='sin enfermedades', sexo='masculino')
+
+        self.assertEqual(test_Paciente.nombre, 'Henry')
+        self.assertEqual(test_Paciente.apellido, 'Leon')
+
+class EditPatient(TestCase):
+    def test_edit_patient(self):
+        test_Paciente = Paciente.objects.create(nombre='Francisco', apellido='Hernández', telefono=12345678, telefono_emergencia=12345678,
+        correo='henriscoh1995@gmail.com', fecha_nacimiento='1995-12-12', direccion='zona 6', sexo='masculino')
+
+        paciente = Paciente.objects.get(correo=test_Paciente.correo)
+
+        paciente.nombre = "Franciscox"
+        paciente.apellido = "Hernandezx"
+
+        paciente.save()
+
+        self.assertEqual(paciente.nombre, 'Franciscox')
+        self.assertEqual(paciente.apellido, 'Hernandezx')
+        self.assertEqual(paciente.telefono, 12345678)
+        self.assertEqual(paciente.telefono_emergencia, 12345678)
+        self.assertEqual(paciente.correo, 'henriscoh1995@gmail.com')
+        self.assertEqual(paciente.direccion, 'zona 6')
+        self.assertEqual(paciente.sexo, 'masculino')
+
+        

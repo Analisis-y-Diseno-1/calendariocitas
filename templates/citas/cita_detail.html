@@ -1,1 +1,78 @@
-{% extends '_base.html' %} {% block content %} Detalle {% endblock content %}
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Cita{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/cita_atender.css' %}" />
+{% endblock css %}
+{% block content %} 
+
+<div class="citas">
+    <div class="cita">
+        <div class="paciente">
+            <p>
+                Nombre: <strong>{{cita.paciente.nombre}}</strong></br>
+                Telefono: <strong>{{cita.paciente.telefono}}</strong></br>
+                Telefono Emergencia: <strong>{{cita.paciente.telefono_emergencia}}</strong></br>
+                Email: <strong>{{cita.paciente.correo}}</strong></br>
+            </p>
+        </div>
+        <div class="observaciones">
+            <p>
+                <strong>OBSERVACION:</strong>
+                </br>
+                {{cita.paciente.descripccion}}
+            </p>
+        </div>
+        <div class="resumen">
+            <p>
+                {{cita}} </br>
+                <small>{{cita.fecha_cita}}</small>
+                <small>{{cita.hora_cita}}</small>
+            </p>
+        </div>
+        <div class="actions">
+            <a href="{{ cita.get_absolute_url }}" class="btn btn-primary "> TERMINAR CITA </a>
+        </div>
+    </div>
+    <div class="anotaciones">
+        {% if cita.anotaciones.all|length > 0%}
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td>No Anotacion</td>
+                            <td>Descripcion </td>
+                            <td>Opciones</td>			
+                        </tr>		
+                    </thead>
+                    <tbody>
+                        
+                    {% for anotacion in cita.anotaciones.all %}
+                        <tr>
+                            <td>{{ anotacion.no_anotacion }}</td>
+                            <td>{{ anotacion.descripcion }}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{% url 'modificar_anotacion' anotacion.no_anotacion %}">Modificar</a>
+                                <a class="btn btn-danger mt-1" href="#">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}    
+                    </tbody>
+                </table> 
+        {% else %}
+            <h4>Aun no se han realizado anotaciones en esta cita!</h4>
+        {% endif %}
+        
+        <div class="agregar_nueva">
+            {% for field in anotacion_form.visible_fields %}
+                {{field.errors}}
+            {% endfor %}
+            <form action="{% url 'crear_anotacion' cita.id %}" method='POST'>{% csrf_token %}
+                {{ anotacion_form.as_p }}
+                <input class="btn btn-success btn-block" type='submit' value='Agregar anotación'/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'allauth.account',
 
     # Local apps
-    'users.apps.UsersConfig',
+    #'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'cita',
     'anotacion',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +137,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+#DATE_INPUT_FORMATS = ['%d-%m-%Y'] Por si se quiere introducir la fecha de este modo
 
 
 # Static files (CSS, JavaScript, Images)

@@ -13,26 +13,29 @@ class pacienteForm(forms.ModelForm):
             'telefono_emergencia',
             'correo',
             'fecha_nacimiento',
-            'descripcion',
-            'sexo'
+            'direccion',
+            'descripccion',
+            'sexo',
             ]
-        lables = {
-            'nombre' : 'Nombre:',
-            'apellido' : 'Apellido:',
-            'telefono': 'Telefono:',
-            'telefono_emergencia' : 'Telefono de emergencia:',
-            'correo' :'Correo electronico:',
-            'fecha_nacimiento' : 'Fecha de Nacimiento',
-            'descripcion': 'Descripcion:',
-            'sexo': 'Sexo:'
+        labels = {
+            'nombre': 'Nombre',
+            'apellido': 'Apellido',
+            'telefono': 'Telefono',
+            'telefono_emergencia': 'Telefono Emergencia',
+            'correo': 'Correo',
+            'fecha_nacimiento': 'Fecha De Nacimiento',
+            'direccion': 'Direccion',
+            'descripccion': 'Descripcion',
+            'sexo': 'Sexo',
         }
         widgets = {
-            'nombre' : forms.TextInput(attrs={'class':'form-control'}),
-            'apellido' : forms.TextInput(attrs={'class':'form-control'}),
+            'nombre': forms.TextInput(attrs={'class':'form-control'}),
+            'apellido': forms.TextInput(attrs={'class':'form-control'}),
             'telefono': forms.TextInput(attrs={'class':'form-control'}),
-            'telefono_emergencia' : forms.TextInput(attrs={'class':'form-control'}),
-            'correo' : forms.TextInput(attrs={'class':'form-control'}),
-            'fecha_nacimiento' : forms.TextInput(attrs={'class':'form-control'}),
-            'descripcion': forms.TextInput(attrs={'class':'form-control'}),
-            'sexo': forms.TextInput(attrs={'class':'form-control'})
+            'telefono_emergencia': forms.TextInput(attrs={'class':'form-control'}),
+            'correo': forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_nacimiento': forms.TextInput(attrs={'class':'form-control'}),
+            'direccion': forms.TextInput(attrs={'class':'form-control'}),
+            'descripccion': forms.TextInput(attrs={'class':'form-control'}),
+            'sexo': forms.TextInput(attrs={'class':'form-control'}),
         }

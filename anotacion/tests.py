@@ -2,11 +2,10 @@ from django.test import TestCase
 from anotacion.models import Anotacion
 from cita.models import Cita
 from datetime import datetime
-
-# Create your tests here.
-
 from anotacion.models import Anotacion
 from django.urls import reverse
+
+# Create your tests here.
 
 class ListaAnotacionesTest(TestCase):
     @classmethod
@@ -28,22 +27,7 @@ class AnnotationViewTest(TestCase):
             estado='Pendiente', comentario='Hacre examen', paciente=1001)
         #test_meeting.save()
 
-        #Create a annotation
-        test_annotation = Anotacion.objects.create(id_cita=test_meeting.pk, descripcion='Tiene fiebre', fecha_hora=datetime.now())
-        #test_annotation.save()
-    '''
-
-    def test_create_annotation(self):
-        #esp = self.client.post(reverse('anotacion', kwargs={'pk':self.test_annotation.pk,}), {'renewal_date':valid_date_in_future} )
-        #self.assertRedirects(resp, reverse('home') )
-        #Create a meeting
-        test_meeting = Cita.objects.create(fecha=datetime.now(), fecha_cita=datetime.now(), hora_cita=datetime.now(),
-            estado='Pendiente', comentario='Hacre examen', paciente=1001)
-        #Create a annotation
-        fecha = datetime.now()
-        test_annotation = Anotacion.objects.create(id_cita=test_meeting, descripcion='Tiene fiebre', fecha_hora=fecha)
-
-        self.assertEqual(test_annotation.id_cita, test_meeting)
-        self.assertEqual(test_annotation.descripcion, 'Tiene fiebre')
-        self.assertEqual(test_annotation.fecha_hora, fecha)
-        
+#         #Create a annotation
+#         test_annotation = Anotacion.objects.create(id_cita=test_meeting.pk, descripcion='Tiene fiebre', fecha_hora=datetime.now())
+#         #test_annotation.save()
+#     '''

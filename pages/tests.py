@@ -46,8 +46,8 @@ class AgendarCita(SimpleTestCase):
     def test_agendar_template(self):
         self.assertTemplateUsed(self.response,'citas/crear_cita.html')
     
-    # def test_homepage_contains_correct_html(self):
-    #     self.assertContains(self.response, 'Homepage')
+    def test_agendar_contains_correct_html(self):
+        self.assertContains(self.response, 'planificada')
     
     # def test_homepage_does_not_contain_incorrect_html(self):
     #     self.assertNotContains(self.response, 'Hi! I should not be here')

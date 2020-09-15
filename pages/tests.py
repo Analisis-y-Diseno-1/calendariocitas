@@ -29,3 +29,32 @@ class HomepageTests(SimpleTestCase):
             view.func.__name__,
             HomePageView.as_view().__name__
         )
+
+
+class AgendarCita(SimpleTestCase):
+
+    def setUp(self):
+        self.response = self.client.get('/agendar/cita')
+
+    def test_agendar_status_code(self):
+        self.assertEqual(self.response.status_code,200)
+
+    # def test_homepage_url_name(self):
+    #     response = self.client.get(reverse('agendar_cita'))
+    #     self.assertEqual(response.status_code,200)
+
+    # def test_homepage_template(self):
+    #     self.assertTemplateUsed(self.response,'citas/agendar_cita.html')
+    
+    # def test_homepage_contains_correct_html(self):
+    #     self.assertContains(self.response, 'Homepage')
+    
+    # def test_homepage_does_not_contain_incorrect_html(self):
+    #     self.assertNotContains(self.response, 'Hi! I should not be here')
+
+    # def test_homepage_url_resolves_homepageview(self):
+    #     view = resolve('/')
+    #     self.assertEqual(
+    #         view.func.__name__,
+    #         HomePageView.as_view().__name__
+    #     )

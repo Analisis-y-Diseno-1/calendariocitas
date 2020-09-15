@@ -39,9 +39,9 @@ class AgendarCita(SimpleTestCase):
     def test_agendar_status_code(self):
         self.assertEqual(self.response.status_code,200)
 
-    # def test_homepage_url_name(self):
-    #     response = self.client.get(reverse('agendar_cita'))
-    #     self.assertEqual(response.status_code,200)
+    def test_homepage_url_name(self):
+        response = self.client.get(reverse('crear_cita', kwargs={'pk': '1'}))
+        self.assertEqual(response.status_code,200)
 
     # def test_homepage_template(self):
     #     self.assertTemplateUsed(self.response,'citas/agendar_cita.html')

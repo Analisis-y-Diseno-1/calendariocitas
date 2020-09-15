@@ -1,5 +1,5 @@
 from django.test import TestCase, SimpleTestCase
-from .views import HomePageView
+from .views import HomePageView, AppointmentCreate
 from django.urls import reverse, resolve
 
 class HomepageTests(SimpleTestCase):
@@ -49,12 +49,12 @@ class AgendarCita(SimpleTestCase):
     def test_agendar_contains_correct_html(self):
         self.assertContains(self.response, 'planificada')
     
-    # def test_homepage_does_not_contain_incorrect_html(self):
-    #     self.assertNotContains(self.response, 'Hi! I should not be here')
+    def test_agendar_does_not_contain_incorrect_html(self):
+        self.assertNotContains(self.response, 'Hi! I should not be here')
 
-    # def test_homepage_url_resolves_homepageview(self):
-    #     view = resolve('/')
-    #     self.assertEqual(
-    #         view.func.__name__,
-    #         HomePageView.as_view().__name__
-    #     )
+    def test_homepage_url_resolves_homepageview(self):
+        view = resolve('/agendar/cita/1')
+        self.assertEqual(
+            view.func.__name__,
+            AppointmentCreate.as_view().__name__
+        )

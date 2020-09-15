@@ -34,3 +34,6 @@ class AppointmentDetailView(DetailView):
         })
 
         return context
+
+class AppointmentCreate(TemplateView):
+    template_name = 'citas/crear_cita.html'

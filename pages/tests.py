@@ -18,7 +18,7 @@ class HomepageTests(SimpleTestCase):
         self.assertTemplateUsed(self.response,'home.html')
     
     def test_homepage_contains_correct_html(self):
-        self.assertContains(self.response, 'Homepage')
+        self.assertContains(self.response, 'fecha')
     
     def test_homepage_does_not_contain_incorrect_html(self):
         self.assertNotContains(self.response, 'Hi! I should not be here')
@@ -34,7 +34,7 @@ class HomepageTests(SimpleTestCase):
 class AgendarCita(SimpleTestCase):
 
     def setUp(self):
-        self.response = self.client.get('/agendar/cita')
+        self.response = self.client.get('/agendar/cita/1')
 
     def test_agendar_status_code(self):
         self.assertEqual(self.response.status_code,200)

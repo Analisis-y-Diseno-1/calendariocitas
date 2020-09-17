@@ -1,8 +1,9 @@
 from django.shortcuts import render
-
+from users.models import Paciente
 from django.views.generic import TemplateView, ListView, DetailView
 from anotacion.forms import AnotacionForm
 from cita.models import Cita
+from django.db.models import Q
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -32,5 +33,45 @@ class AppointmentDetailView(DetailView):
         context.update({
             'anotacion_form': AnotacionForm # get the form instance
         })
+
+        return context
+
+class AppointmentCreate(TemplateView):
+    template_name = 'citas/crear_cita.html'
+
+    def get_context_data(self, **kwargs): # new
+        context = super().get_context_data(**kwargs)
+        context['id'] = kwargs['pk']
+        context['name'] = kwargs['name']
+        return context
+
+class SearchResultsListView(ListView):
+    ''' Resultados de busqueda '''
+    model = Paciente
+    context_object_name = 'pacients'
+    template_name = "search_result.html"
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Paciente.objects.filter(
+            Q(nombre__icontains=query) | 
+            Q(apellido__icontains=query) |
+            Q(correo__icontains=query) |
+            Q(telefono__icontains=query) |
+            Q(telefono_emergencia__icontains=query) |
+            Q(correo__icontains=query) 
+        )
+
+    def get_context_data(self, **kwargs): # new
+        context = super().get_context_data(**kwargs)
+
+        query = self.request.GET.get('q')
+        context['citas'] =  Cita.objects.filter(
+            Q(paciente__nombre__icontains=query) |
+            Q(paciente__telefono__icontains=query) |
+            Q(paciente__telefono_emergencia__icontains=query) |
+            Q(comentario__icontains=query) |
+            Q(paciente__correo__icontains=query) 
+        )
 
         return context

@@ -21,3 +21,14 @@ class Cita(models.Model):
     def get_absolute_url(self):
         return reverse("cita_detail", kwargs={"pk": self.pk})
     
+
+class Receta(models.Model):
+    fecha = models.DateTimeField(auto_now_add=True)
+    detalle_receta = models.CharField(max_length=300)
+    cita = models.ForeignKey("Cita", related_name="recetas", on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return self.detalle_receta
+    
+    def get_absolute_url(self):
+        return reverse("receta_detail", kwargs={"pk": self.pk})

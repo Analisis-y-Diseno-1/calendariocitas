@@ -5,11 +5,15 @@ from cita.views import appointment_create, appointment_update
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 from .views import AppointmentCreate
 from .views import SearchResultsListView
+from .views import RecetasListView, RecetasDetailView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     # Busquedas
     path('search_results/', SearchResultsListView.as_view(), name="search_by_name"),
+    # Recetas
+    path('recetas', RecetasListView.as_view(), name="recetas"),
+    path('recetas/<int:pk>', RecetasDetailView.as_view(), name="receta_detail"),
 
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),

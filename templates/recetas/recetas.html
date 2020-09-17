@@ -1,0 +1,9 @@
+{% load static %}
+<div class="recetas">
+    {% for receta in recetas %}
+        <div class="receta">
+            {{receta}}
+        </div>
+        <a href={{receta.get_absolute_url}} class="btn btn-info">Ver receta</a>
+    {% endfor %}
+</div>

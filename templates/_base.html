@@ -37,6 +37,7 @@
           <a class="p-2 text-dark" href="{% url 'home' %}">About</a>
           {% if user.is_authenticated %}
           <a class="p-2 text-dark" href="{% url 'citas' %}">Citas del dia</a>
+          <a class="p-2 text-dark" href="{% url 'recetas' %}">Recetas</a>
           <a class="p-2 text-dark" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}
           <a class="p-2 text-dark" href="{% url 'account_login' %}">Log In</a>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from users.models import Paciente
 from django.views.generic import TemplateView, ListView, DetailView
 from anotacion.forms import AnotacionForm
-from cita.models import Cita
+from cita.models import Cita, Receta
 from django.db.models import Q
 
 class HomePageView(TemplateView):
@@ -13,6 +13,15 @@ class AppointmentsListView(ListView):
     context_object_name = 'cita_list'
     template_name = 'citas/lista_citas.html'
 
+class RecetasListView(ListView):
+    model = Receta
+    context_object_name="recetas"
+    template_name='recetas/lista_de_recetas.html'
+
+class RecetasDetailView(DetailView):
+    model = Receta
+    context_object_name="receta"
+    template_name='recetas/detalle_receta.html'
 
 class AppointmentDetailView(DetailView):
     model = Cita

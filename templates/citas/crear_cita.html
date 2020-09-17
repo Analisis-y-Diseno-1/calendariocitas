@@ -16,10 +16,9 @@
     {% endif %}
     <div class="detail">
         <div class="title d-flex justify-content-center">
-            <h3>{{cita.paciente.nombre}}</h3>
+            <h3>{{name}}</h3>
         </div>
-        {% comment %} <form action="{% url 'appointment_create' pk=id %}" method="post"> {% endcomment %}
-        <form action="">
+        <form action="{% url 'appointment_create' pk=id %}" method="post">
             {% csrf_token %}
             <div class="form-row">
                 <div class="col-12">

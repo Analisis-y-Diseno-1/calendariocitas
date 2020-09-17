@@ -8,7 +8,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <a href="{%url 'home' %}" class="btn btn-success">Agendar cita</a>
+                {% comment %} <a href="{%url 'crear_cita' pk=1 %}" class="btn btn-success">Agendar cita</a> {% endcomment %}
+                <a href="#" class="tool" onclick="OpenModal()">Agendar nueva cita</a>
             </div>
         </div>
     </div>
@@ -49,3 +50,17 @@
         {% endfor %}    
     </div>
  {% endblock  %}
+
+ {% block modal %}
+    {% include 'layout/modals/search_user.html' %}
+{% endblock modal %}
+
+{% block js %}
+    <script>
+        function OpenModal(){
+            $("#staticBackdrop").modal("show");
+        }
+
+        
+    </script>
+{% endblock js %}

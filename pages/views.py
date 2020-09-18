@@ -12,6 +12,19 @@ class AppointmentsListView(ListView):
     model = Cita
     context_object_name = 'cita_list'
     template_name = 'citas/lista_citas.html'
+    def get_queryset(self):
+        filter_val = self.request.GET.get('q', 'give-default-value')
+        print(filter_val)
+        try:
+            new_context = Cita.objects.filter(
+                fecha_cita=filter_val,
+            )
+            return new_context
+        except:
+            new_context = Cita.objects.all()
+            return new_context
+
+        
 
 class RecetasListView(ListView):
     model = Receta

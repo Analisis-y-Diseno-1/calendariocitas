@@ -36,7 +36,7 @@ class ModelCitaTest(TestCase):
             descripccion = 'Persona de la tercera edad con problemas de respiracion',
             sexo = 'MASCULINO',
             )
-        #Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()
+        Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()
 
         citas = Cita.objects.all()
         self.assertEqual(citas[0].comentario, 'prueba')

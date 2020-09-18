@@ -41,3 +41,18 @@ def appointment_create(request, pk):
         '¡Hemos guardado tus cambios!')
             
     return redirect('crear_cita', pk=pk, name=Paciente.objects.get(id=pk).nombre)
+
+def appointment_delete(request, pk):
+    query = request.POST
+    if Cita.objects.filter(id=pk).exists():
+        try:
+            cita = Cita.objects.get(id=pk)
+            cita.delete()
+        except:
+            messages.add_message(request, messages.ERROR, 
+            'ERROR: Ha ocurrido un error al eliminar la cita, intenta de nuevo.')
+        else:
+            messages.add_message(request, messages.INFO, 
+            '¡Se ha eliminado la cita!')
+            
+    return redirect('citas')

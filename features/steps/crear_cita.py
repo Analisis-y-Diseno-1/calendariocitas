@@ -1,7 +1,8 @@
 from behave import *
 from users.models import Paciente
 from cita.models import Cita
-
+from datetime import datetime, timedelta, date
+'''
 @given('Existen pacientes registrados')
 def step_impl(context):
     #ponemos el sistema en un estado inicial.
@@ -31,7 +32,7 @@ def step_impl(context):
             )
     user.save()
     pass
-    
+ '''   
     
 
 @when('Cuando se pulse el boton agendar cita')
@@ -40,7 +41,7 @@ def step_impl(context):
     #Se elimina un paciente
     paciente = Paciente.objects.get(correo='pedrogracia@gmail.com')
     cita = Cita(
-        fecha_cita="1996/11/7",
+        fecha_cita="1996-11-7",
         hora_cita="15:30",
         estado="PENDIENTE",
         comentario="Prueba BDD",
@@ -55,8 +56,8 @@ def step_impl(context):
 @then('Se crea una nueva cita para el paciente')
 def step_impl(context):
     #Se observan los resultados
-    cita = Cita.objects.get(id=1)
-    assert cita.paciente.correo == 'pedrogracia@gmail.com'
+    cita = Cita.objects.all()
+    assert cita[0].paciente.correo == 'pedrogracia@gmail.com'
     
     
     

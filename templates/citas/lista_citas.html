@@ -33,11 +33,16 @@
                         {{cita}} </br>
                         <small>{{cita.fecha_cita}}</small>
                         <small>{{cita.hora_cita}}</small>
+                        <br>
+                        <strong>{{cita.estado}}</strong>
                     </p>
                 </div>
                 <div class="actions">
                     <a href="{{ cita.get_absolute_url }}" class="btn btn-primary "> ATENDER </a>
                     <a href="{{ cita.get_absolute_url }}" class="btn btn-warning "> EDITAR </a>
+                    <a href="{% url 'eliminar_cita' cita.id %}" class="btn btn-danger "> EIMINAR </a>
+                    
+			
                 </div>
             </div>
         {% endfor %}    

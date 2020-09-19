@@ -42,6 +42,16 @@ class AppointmentDetailView(DetailView):
     context_object_name = 'cita'
     template_name = 'citas/cita_detail.html'
     
+    def get_form(self):
+        form = self.form_class(instance=AnotacionForm), # instantiate the form
+        form2 = self.form_class(isinstance=RecetaForm)
+
+        # modify the form fields
+        # form.fields['primary_purpose_business_use'].label = "Primary purpose/business use"
+        # form.fields['secondary_purpose_business_uses'].label = "Secondary purpose/business uses"
+
+        return {form, form2}
+    
     def get_context_data(self, **kwargs):
         context = super(AppointmentDetailView, self).get_context_data(**kwargs)
         context.update({

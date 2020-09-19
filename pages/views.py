@@ -2,6 +2,7 @@ from django.shortcuts import render
 from users.models import Paciente
 from django.views.generic import TemplateView, ListView, DetailView
 from anotacion.forms import AnotacionForm
+from cita.forms import RecetaForm
 from cita.models import Cita, Receta
 from django.db.models import Q
 
@@ -42,18 +43,20 @@ class AppointmentDetailView(DetailView):
     template_name = 'citas/cita_detail.html'
     
     def get_form(self):
-        form = self.form_class(instance=AnotacionForm) # instantiate the form
+        form = self.form_class(instance=AnotacionForm), # instantiate the form
+        form2 = self.form_class(isinstance=RecetaForm)
 
         # modify the form fields
         # form.fields['primary_purpose_business_use'].label = "Primary purpose/business use"
         # form.fields['secondary_purpose_business_uses'].label = "Secondary purpose/business uses"
 
-        return form
+        return {form, form2}
     
     def get_context_data(self, **kwargs):
         context = super(AppointmentDetailView, self).get_context_data(**kwargs)
         context.update({
-            'anotacion_form': AnotacionForm # get the form instance
+            'anotacion_form': AnotacionForm, # get the form instance
+            'receta_form': RecetaForm
         })
 
         return context

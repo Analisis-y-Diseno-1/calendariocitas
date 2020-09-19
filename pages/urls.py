@@ -1,7 +1,7 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion, annotationCreate
 from users.views import listado_pacientes,modificar_paciente, ingresar_paciente, detalle_paciente
-from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve
+from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 from .views import AppointmentCreate
 from .views import SearchResultsListView
@@ -14,6 +14,7 @@ urlpatterns = [
     # Recetas
     path('recetas', RecetasListView.as_view(), name="recetas"),
     path('recetas/<int:pk>', RecetasDetailView.as_view(), name="receta_detail"),
+    path('crear_receta/<id>', RecetaCreate, name='crear_receta'),
 
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),

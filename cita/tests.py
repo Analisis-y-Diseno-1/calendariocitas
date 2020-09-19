@@ -2,6 +2,7 @@ from django.test import TestCase, SimpleTestCase
 from .models import Cita
 from datetime import datetime, timedelta, date
 from users.models import Paciente
+from django.urls import reverse
 # # Create your tests here.
 # '''
 # class ModelCitaTest(TestCase):
@@ -49,4 +50,8 @@ class RecetaCreate(SimpleTestCase):
         self.response = self.client.get('/crear_receta/1')
 
     def test_agendar_status_code(self):
-        self.assertEqual(self.response.status_code,302)
+        self.assertEqual(self.response.status_code,302) #Ahora arreglar para que sea 200
+
+    def test_crear_recete_url(self):
+        response = self.client.get(reverse('crear_receta', kwargs={'id': '1'}))
+        self.assertEqual(response.status_code,200)

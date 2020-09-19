@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, SimpleTestCase
 from .models import Cita
 from datetime import datetime, timedelta, date
 from users.models import Paciente
@@ -44,4 +44,9 @@ class ModelCitaTest(TestCase):
         self.assertEqual(citas[0].estado, 'Pendiente')
         self.assertNotEqual(citas[0].delete()[0],0 )#Es 0 si no elimino nada
 
+class RecetaCreate(SimpleTestCase):
+    def setUp(self):
+        self.response = self.client.get('/crear_receta/1')
 
+    def test_agendar_status_code(self):
+        self.assertEqual(self.response.status_code,200)

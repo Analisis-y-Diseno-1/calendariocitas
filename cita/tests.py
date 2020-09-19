@@ -1,5 +1,5 @@
 from django.test import TestCase, SimpleTestCase
-from .models import Cita
+from .models import Cita, Receta
 from datetime import datetime, timedelta, date
 from users.models import Paciente
 from django.urls import reverse, resolve
@@ -46,9 +46,26 @@ class ModelCitaTest(TestCase):
         self.assertEqual(citas[0].estado, 'Pendiente')
         self.assertNotEqual(citas[0].delete()[0],0 )#Es 0 si no elimino nada
 
-class RecetaCreate(SimpleTestCase):
+class RecetaCreate(TestCase):
     
     def setUp(self):
+        fecha = datetime.now().strftime("%Y-%m-%d")
+        hora = datetime.now().strftime("%H:%M:%S")
+        paciente=Paciente.objects.create(
+            nombre = 'Juan',
+            apellido = 'Perez',
+            telefono = '12345678',
+            telefono_emergencia = '12345679',
+            correo = 'juanperez@gmail.com',
+            fecha_nacimiento = '2020-12-12',
+            direccion = 'direccion de domicilio',
+            descripccion = 'Persona de la tercera edad con problemas de respiracion',
+            sexo = 'MASCULINO',
+            )
+        cita = Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()
+
+        Receta(detalle_receta='Tiene dolor de garganta', cita=cita, fecha=fecha).save()
+        #receta = Receta.objects.create(detalle_receta='Tiene dolor de garganta',)
         self.response = self.client.get('/crear_receta/6')
 
     def test_agendar_status_code(self):
@@ -64,3 +81,7 @@ class RecetaCreate(SimpleTestCase):
             view.func.__name__,
             RecetaCreate.__name__
         )
+    
+    def test_crear_receta(self):
+        receta = Receta.objects.all()[0]
+        self.assertEqual(receta.detalle_receta, 'Tiene dolor de garganta')

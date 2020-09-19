@@ -3,6 +3,7 @@ from .models import Cita
 from django.contrib import messages
 from django.shortcuts import redirect
 from users.models import Paciente
+from .forms import RecetaForm
 from datetime import datetime 
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -76,6 +77,13 @@ def appointment_serve(request, pk):
     return redirect('citas')
 
 def RecetaCreate(request, id):
+    form = RecetaForm(request.POST)
     
+    if form.is_valid():
+        receta = form.save(commit=False)
+        #fecha = datetime.now()
+        cita = Cita.objects.get(id=id)
+        receta.cita = cita
+        receta.save()
 
     return HttpResponseRedirect('/citas/'+id)

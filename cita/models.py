@@ -5,7 +5,7 @@ class Cita(models.Model):
     ESTADO_OPCIONES = [
         ('PENDIENTE', 'Pendiente'),
         ('ATENDIDA', 'Atendida'),
-        ('Cancelada', 'Cancelada'),
+        ('CANCELADA', 'Cancelada'),
     ]
     fecha = models.DateTimeField(auto_now_add=True)
     fecha_cita = models.DateField()

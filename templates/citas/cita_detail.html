@@ -31,7 +31,7 @@
             </p>
         </div>
         <div class="actions">
-            <a href="{{ cita.get_absolute_url }}" class="btn btn-primary "> TERMINAR CITA </a>
+            <a href="{% url 'atender_cita' cita.id %}" class="btn btn-primary "> TERMINAR CITA </a>
         </div>
     </div>
     <div class="anotaciones">

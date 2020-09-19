@@ -56,3 +56,19 @@ def appointment_delete(request, pk):
             '¡Se ha eliminado la cita!')
             
     return redirect('citas')
+
+def appointment_serve(request, pk):
+    query = request.POST
+    if Cita.objects.filter(id=pk).exists():
+        try:
+            cita = Cita.objects.get(id=pk)
+            cita.estado="ATENDIDA"
+            cita.save()
+        except:
+            messages.add_message(request, messages.ERROR, 
+            'ERROR: Ha ocurrido un error al atender la cita, intenta de nuevo.')
+        else:
+            messages.add_message(request, messages.INFO, 
+            '¡Se ha atendido la cita!')
+            
+    return redirect('citas')

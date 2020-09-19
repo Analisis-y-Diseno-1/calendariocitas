@@ -49,4 +49,4 @@ class RecetaCreate(SimpleTestCase):
         self.response = self.client.get('/crear_receta/1')
 
     def test_agendar_status_code(self):
-        self.assertEqual(self.response.status_code,200)
+        self.assertEqual(self.response.status_code,302)

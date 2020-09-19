@@ -3,6 +3,8 @@ from .models import Cita
 from django.contrib import messages
 from django.shortcuts import redirect
 from users.models import Paciente
+from datetime import datetime 
+from django.http import HttpResponse, HttpResponseRedirect
 
 def appointment_update(request, pk):
     query = request.POST
@@ -72,3 +74,8 @@ def appointment_serve(request, pk):
             '¡Se ha atendido la cita!')
             
     return redirect('citas')
+
+def RecetaCreate(request, id):
+    
+
+    return HttpResponseRedirect('/citas/'+id)

@@ -6,6 +6,7 @@ from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 from .views import AppointmentCreate
 from .views import SearchResultsListView
 from .views import RecetasListView, RecetasDetailView
+from .views import modificar_cita
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
@@ -22,7 +23,7 @@ urlpatterns = [
     path('act_crear_cita/<int:pk>', appointment_create, name="appointment_create"),
     path('eliminar_cita/<int:pk>', appointment_delete, name="eliminar_cita"),
     path('atender_cita/<int:pk>', appointment_serve, name="atender_cita"),
-    #path('modificar_cita/<int:pk>/', metodoModificar, name="modificar_cita"),
+    path('modificar_cita/<int:pk>/', modificar_cita, name="modificar_cita"),
     # ANOTACIONES
     path('anotacion/', crear_anotacion, name='anotacion'),
     path('crear_anotacion/<id>', annotationCreate, name='crear_anotacion'),

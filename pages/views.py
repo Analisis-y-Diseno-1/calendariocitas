@@ -2,7 +2,6 @@ from django.shortcuts import render
 from users.models import Paciente
 from django.views.generic import TemplateView, ListView, DetailView
 from anotacion.forms import AnotacionForm
-from cita.forms import RecetaForm
 from cita.models import Cita, Receta
 from django.db.models import Q
 
@@ -13,19 +12,6 @@ class AppointmentsListView(ListView):
     model = Cita
     context_object_name = 'cita_list'
     template_name = 'citas/lista_citas.html'
-    def get_queryset(self):
-        filter_val = self.request.GET.get('q', 'give-default-value')
-        print(filter_val)
-        try:
-            new_context = Cita.objects.filter(
-                fecha_cita=filter_val,
-            )
-            return new_context
-        except:
-            new_context = Cita.objects.all()
-            return new_context
-
-        
 
 class RecetasListView(ListView):
     model = Receta
@@ -43,20 +29,13 @@ class AppointmentDetailView(DetailView):
     template_name = 'citas/cita_detail.html'
     
     def get_form(self):
-        form = self.form_class(instance=AnotacionForm), # instantiate the form
-        form2 = self.form_class(isinstance=RecetaForm)
-
-        # modify the form fields
-        # form.fields['primary_purpose_business_use'].label = "Primary purpose/business use"
-        # form.fields['secondary_purpose_business_uses'].label = "Secondary purpose/business uses"
-
-        return {form, form2}
+        form = self.form_class(instance=AnotacionForm)
+        return form
     
     def get_context_data(self, **kwargs):
         context = super(AppointmentDetailView, self).get_context_data(**kwargs)
         context.update({
-            'anotacion_form': AnotacionForm, # get the form instance
-            'receta_form': RecetaForm
+            'anotacion_form': AnotacionForm # get the form instance
         })
 
         return context
@@ -97,6 +76,10 @@ class SearchResultsListView(ListView):
             Q(paciente__telefono_emergencia__icontains=query) |
             Q(comentario__icontains=query) |
             Q(paciente__correo__icontains=query) 
+        )
+        context['recetas'] =  Receta.objects.filter(
+            Q(cita__paciente__nombre__icontains=query) |
+            Q(detalle_receta__icontains=query)
         )
 
         return context

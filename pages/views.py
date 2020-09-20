@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from users.models import Paciente
-from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib import messages
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from anotacion.forms import AnotacionForm
 from cita.models import Cita, Receta
 from django.db.models import Q
@@ -97,3 +98,5 @@ class SearchResultsListView(ListView):
         )
 
         return context
+
+    

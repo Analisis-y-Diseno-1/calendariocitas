@@ -47,7 +47,8 @@ class ModelCitaTest(TestCase):
 
 class ModificarCita(TestCase):
     def test_modificar_cita(self):
-        test_cita = Cita.objects.create(fecha_cita='2020-09-25',hora_cita='11:00',comentario='Editado1',paciente_id=3)
+        paciente = Paciente.objects.get(nombre='Lucia')
+        test_cita = Cita.objects.create(fecha_cita='2020-09-25',hora_cita='06:30:00',estado='PENDIENTE',comentario='Editado1',paciente_id=paciente.id,fecha='2020-09-19 19:04:14.960231')
 
         getcita = Cita.objects.get(id=8)
 
@@ -55,4 +56,11 @@ class ModificarCita(TestCase):
         getcita.save()
 
         self.assertEqual(getcita.comentario,'Editado2')
+
+        self.assertEqual(getcita.fecha_cita, '2020-09-25')
+        self.assertEqual(getcita.hora_cita, '06:30:00')
+        self.assertEqual(getcita.estado, 'PENDIENTE')
+        self.assertEqual(getcita.comentario, 'Editado2')
+        self.assertEqual(getcita.paciente_id, paciente.id)
+        self.assertEqual(getcita.fecha, '2020-09-19 19:04:14.960231')
 

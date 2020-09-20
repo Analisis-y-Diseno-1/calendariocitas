@@ -1,9 +1,31 @@
 {% load static %}
-<div class="recetas">
+
+<div class="tabla-recetas">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Paciente Nombre</th>
+      <th>Paciente Apellido</th>
+	  <th>Fecha</th>
+	  <th>Detalle</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <div class="recetas">
     {% for receta in recetas %}
+    <tr>
         <div class="receta">
-            {{receta}}
+            <td>{{receta.cita.paciente.nombre}}</td>
+            <td>{{receta.cita.paciente.apellido}}</td>
+            <td>{{receta.fecha}}</td>
+            <td>{{receta.detalle_receta}}</td>
+            <td><a href={{receta.get_absolute_url}} class="btn btn-info">Ver receta</a></td>
         </div>
-        <a href={{receta.get_absolute_url}} class="btn btn-info">Ver receta</a>
+    </tr>
     {% endfor %}
+    </div>
+  </tbody>
+</table>
 </div>

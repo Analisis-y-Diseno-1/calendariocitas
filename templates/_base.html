@@ -46,6 +46,15 @@
           >
           {% endif %}
         </nav>
+          <form action="{% url 'search_by_name' %}" method="get" class="form-inline my-2 my-lg-0 pr-4">
+            <div class="form-group">
+            <label for="searchCalendar">
+            <i class="fa fa-search pr-2"></i>
+            </label>
+            <input name="q" class="form-control mr-sm-2" type="text" placeholder="Nombre/Apellido/Otro"
+                    aria-label="Buscar" id="searchCalendar">
+            </div>
+        </form>
       </div>
     </header>
     <div class="container">{% block content %} {% endblock content %}</div>

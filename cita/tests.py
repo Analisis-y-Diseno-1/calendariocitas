@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import Cita
 from datetime import datetime, timedelta, date
 from users.models import Paciente
+from cita.models import Cita
 # # Create your tests here.
 # '''
 # class ModelCitaTest(TestCase):
@@ -44,4 +45,22 @@ class ModelCitaTest(TestCase):
         self.assertEqual(citas[0].estado, 'Pendiente')
         self.assertNotEqual(citas[0].delete()[0],0 )#Es 0 si no elimino nada
 
+class ModificarCita(TestCase):
+    def test_modificar_cita(self):
+        paciente = Paciente.objects.get(nombre='Lucia')
+        test_cita = Cita.objects.create(fecha_cita='2020-09-25',hora_cita='06:30:00',estado='PENDIENTE',comentario='Editado1',paciente_id=paciente.id,fecha='2020-09-19 19:04:14.960231')
+
+        getcita = Cita.objects.get(id=8)
+
+        getcita.comentario = "Editado2"
+        getcita.save()
+
+        self.assertEqual(getcita.comentario,'Editado2')
+
+        self.assertEqual(getcita.fecha_cita, '2020-09-25')
+        self.assertEqual(getcita.hora_cita, '06:30:00')
+        self.assertEqual(getcita.estado, 'PENDIENTE')
+        self.assertEqual(getcita.comentario, 'Editado2')
+        self.assertEqual(getcita.paciente_id, paciente.id)
+        self.assertEqual(getcita.fecha, '2020-09-19 19:04:14.960231')
 

@@ -72,3 +72,4 @@ def appointment_serve(request, pk):
             '¡Se ha atendido la cita!')
             
     return redirect('citas')
+    

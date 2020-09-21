@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from users.models import Paciente
-from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib import messages
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from anotacion.forms import AnotacionForm
 from cita.models import Cita, Receta
 from django.db.models import Q
@@ -97,3 +98,23 @@ class SearchResultsListView(ListView):
         )
 
         return context
+
+def modificar_cita(request, pk):
+    query = request.POST
+    if Cita.objects.filter(id=pk).exists():
+        try:
+            cita = Cita.objects.get(id=pk)
+            cita.fecha_cita=query['fecha_cita']
+            cita.hora_cita=query['hora_cita']
+            cita.comentario=query['comentario']
+
+            cita.save()
+        except:
+            messages.add_message(request, messages.ERROR,'Error, No se pudo actualizar cita')
+    
+        else:
+            messages.add_message(request, messages.INFO,'Se realizaron los cambios con exito!')
+    
+    return redirect('citas/crear_cita.html',pk=pk)
+            
+    

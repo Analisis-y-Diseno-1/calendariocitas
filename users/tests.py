@@ -95,8 +95,8 @@ class EditPatient(TestCase):
 
         self.assertEqual(paciente.nombre, 'Franciscox')
         self.assertEqual(paciente.apellido, 'Hernandezx')
-        self.assertEqual(paciente.telefono, 12345678)
-        self.assertEqual(paciente.telefono_emergencia, 12345678)
+        self.assertEqual(paciente.telefono, '12345678')
+        self.assertEqual(paciente.telefono_emergencia, '12345678')
         self.assertEqual(paciente.correo, 'henriscoh1995@gmail.com')
         self.assertEqual(paciente.direccion, 'zona 6')
         self.assertEqual(paciente.sexo, 'masculino')

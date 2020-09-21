@@ -14,6 +14,7 @@ urlpatterns = [
     # Recetas
     path('recetas', RecetasListView.as_view(), name="recetas"),
     path('recetas/<int:pk>', RecetasDetailView.as_view(), name="receta_detail"),
+  
 
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),

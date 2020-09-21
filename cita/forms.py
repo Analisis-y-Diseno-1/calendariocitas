@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from anotacion.models import Anotacion
+from .models import Receta
 
 class CardAnotacion_form(ModelForm):
     
@@ -22,3 +23,15 @@ class AnotacionForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={'class': 'form_control', 'cols': 15, 'rows': 3}),
         }
 
+class RecetaForm(forms.ModelForm):
+    class Meta:
+        model = Receta
+        fields = [
+            'detalle_receta',
+        ]
+        labels = {
+            'detalle_receta': 'Detalle de la Receta',
+        }
+        widgets = {
+            'detalle_receta': forms.Textarea(attrs={'class': 'form_control', 'cols': 15, 'rows': 3}),
+        }

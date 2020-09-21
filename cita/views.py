@@ -3,6 +3,9 @@ from .models import Cita
 from django.contrib import messages
 from django.shortcuts import redirect
 from users.models import Paciente
+from .forms import RecetaForm
+from datetime import datetime 
+from django.http import HttpResponse, HttpResponseRedirect
 
 def appointment_update(request, pk):
     query = request.POST
@@ -72,4 +75,19 @@ def appointment_serve(request, pk):
             '¡Se ha atendido la cita!')
             
     return redirect('citas')
+<<<<<<< HEAD
     
+=======
+
+def RecetaCreate(request, id):
+    form = RecetaForm(request.POST)
+    
+    if form.is_valid():
+        receta = form.save(commit=False)
+        #fecha = datetime.now()
+        cita = Cita.objects.get(id=id)
+        receta.cita = cita
+        receta.save()
+
+    return HttpResponseRedirect('/citas/'+id)
+>>>>>>> d340026dd0ed27239f38442d25623f40ce06bf6c

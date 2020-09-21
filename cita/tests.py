@@ -1,8 +1,13 @@
-from django.test import TestCase
-from .models import Cita
+from django.test import TestCase, SimpleTestCase
+from .models import Cita, Receta
 from datetime import datetime, timedelta, date
 from users.models import Paciente
+<<<<<<< HEAD
 from cita.models import Cita
+=======
+from django.urls import reverse, resolve
+from .views import Cita
+>>>>>>> d340026dd0ed27239f38442d25623f40ce06bf6c
 # # Create your tests here.
 # '''
 # class ModelCitaTest(TestCase):
@@ -64,3 +69,43 @@ class ModificarCita(TestCase):
         self.assertEqual(getcita.paciente_id, paciente.id)
         self.assertEqual(getcita.fecha, '2020-09-19 19:04:14.960231')
 
+        
+class RecetaCreate(TestCase):
+    
+    def setUp(self):
+        fecha = datetime.now().strftime("%Y-%m-%d")
+        hora = datetime.now().strftime("%H:%M:%S")
+        paciente=Paciente.objects.create(
+            nombre = 'Juan',
+            apellido = 'Perez',
+            telefono = '12345678',
+            telefono_emergencia = '12345679',
+            correo = 'juanperez@gmail.com',
+            fecha_nacimiento = '2020-12-12',
+            direccion = 'direccion de domicilio',
+            descripccion = 'Persona de la tercera edad con problemas de respiracion',
+            sexo = 'MASCULINO',
+            )
+        cita = Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()
+
+        Receta(detalle_receta='Tiene dolor de garganta', cita=cita, fecha=fecha).save()
+        #receta = Receta.objects.create(detalle_receta='Tiene dolor de garganta',)
+        self.response = self.client.get('/crear_receta/6')
+
+    def test_agendar_status_code(self):
+        self.assertEqual(self.response.status_code,302)
+
+    def test_crear_recete_url(self):
+        response = self.client.get(reverse('crear_receta', kwargs={'id': '6'}))
+        self.assertEqual(response.status_code,302)
+
+    def test_crear_recetas_url_resolves_create_recetasview(self):
+        view = resolve('/crear_receta/6')
+        self.assertEqual(
+            view.func.__name__,
+            RecetaCreate.__name__
+        )
+    
+    def test_crear_receta(self):
+        receta = Receta.objects.all()[0]
+        self.assertEqual(receta.detalle_receta, 'Tiene dolor de garganta')

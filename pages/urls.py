@@ -1,7 +1,7 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion, annotationCreate
 from users.views import listado_pacientes,modificar_paciente, ingresar_paciente, detalle_paciente
-from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate,,ingresar_receta_off
+from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 from .views import AppointmentCreate
 from .views import SearchResultsListView

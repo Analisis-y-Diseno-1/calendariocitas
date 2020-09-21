@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Cita
+from .models import Cita, Receta
+from .forms import recetaOffForm
 from django.contrib import messages
 from django.shortcuts import redirect
 from users.models import Paciente
@@ -45,6 +46,7 @@ def appointment_create(request, pk):
             
     return redirect('crear_cita', pk=pk, name=Paciente.objects.get(id=pk).nombre)
 
+<<<<<<< HEAD
 def appointment_delete(request, pk):
     query = request.POST
     if Cita.objects.filter(id=pk).exists():
@@ -91,3 +93,14 @@ def RecetaCreate(request, id):
 
     return HttpResponseRedirect('/citas/'+id)
 >>>>>>> d340026dd0ed27239f38442d25623f40ce06bf6c
+=======
+
+def ingresar_receta_off(request):
+    form = recetaOffForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('recetas')
+    else:
+        form = recetaOffForm()
+    return render(request, 'citas/crear_receta_off.html', {'form': form})
+>>>>>>> feature/h7-crearRecetaFueraCita

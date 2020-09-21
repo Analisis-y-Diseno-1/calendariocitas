@@ -1,5 +1,6 @@
 from django.test import TestCase, SimpleTestCase
 from .models import Cita, Receta
+<<<<<<< HEAD
 from datetime import datetime, timedelta, date
 from users.models import Paciente
 <<<<<<< HEAD
@@ -8,6 +9,43 @@ from cita.models import Cita
 from django.urls import reverse, resolve
 from .views import Cita
 >>>>>>> d340026dd0ed27239f38442d25623f40ce06bf6c
+=======
+from .forms import recetaOffForm
+from datetime import datetime, timedelta, date
+
+
+
+class test_url_receta_off(SimpleTestCase):
+
+    def test_ingresar_pasajero(self):
+        response = self.client.get('/ingresar_receta_off/')
+        self.assertNotEqual(response.status_code, 404)
+
+class test_isValidForm(TestCase):
+    data={
+            'fecha':'1996-02-17',
+            'detalle_receta':'esto es una receta',
+        }
+    def test_valid_form(self):
+        form = recetaOffForm(self.data)
+        self.assertTrue(form.is_valid())
+
+'''class EliminarRecetaTestCase(TestCase):
+    def test_create_receta(self):
+        now = datetime.now()
+        #test_cista = Cita.objects.create(fecha=now, fecha_cita = now, estado = 'PENDIENTE',comentario ='Hello world')
+        test_receta = Receta.objects.create(fecha=now, detalle_receta='Receta 222')
+        #self.assertEqual(test_receta.detalle_receta,'Receta 222')   
+        receta = Receta.objects.get(pk=test_receta.pk)
+        self.assertEqual(receta.detalle_receta,'Receta')'''
+        
+        #pass
+        #self.assertEqual(user.username, 'will')
+        #self.assertEqual(user.email, 'will@email.com')
+        #self.assertTrue(user.is_active)
+        #self.assertFalse(user.is_staff)
+        #self.assertFalse(user.is_superuser)
+>>>>>>> feature/h7-crearRecetaFueraCita
 # # Create your tests here.
 # '''
 # class ModelCitaTest(TestCase):

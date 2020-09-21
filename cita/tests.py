@@ -1,5 +1,6 @@
-from django.test import TestCase
+from django.test import TestCase, SimpleTestCase
 from .models import Cita, Receta
+from .forms import recetaOffForm
 from datetime import datetime, timedelta, date
 
 

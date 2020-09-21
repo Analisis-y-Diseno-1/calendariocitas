@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Cita
+from .models import Cita, Receta
+from .forms import recetaOffForm
 from django.contrib import messages
 from django.shortcuts import redirect
 from users.models import Paciente
@@ -41,3 +42,13 @@ def appointment_create(request, pk):
         '¡Hemos guardado tus cambios!')
             
     return redirect('crear_cita', pk=pk, name=Paciente.objects.get(id=pk).nombre)
+
+
+def ingresar_receta_off(request):
+    form = recetaOffForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('recetas')
+    else:
+        form = recetaOffForm()
+    return render(request, 'citas/crear_receta_off.html', {'form': form})

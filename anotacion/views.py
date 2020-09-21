@@ -3,6 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Anotacion
 from cita.models import Cita
 from .forms import CardAnotacion_form
+from django.views.generic import CreateView
+from anotacion.models import Anotacion
+from anotacion.forms import AnotacionForm
+from django.urls import reverse_lazy
+from datetime import datetime 
 # Create your views here.
 
 def listado_anotaciones(request):
@@ -24,11 +29,6 @@ def modificar_anotacion(request,id):
             data['mensaje'] = "Anotacion modificada correctamente"
             data['form'] = formulario
     return render(request, 'anotacion/modificar_anotacion.html',data)
-from django.views.generic import CreateView
-from anotacion.models import Anotacion
-from anotacion.forms import AnotacionForm
-from django.urls import reverse_lazy
-from datetime import datetime 
 
 # Create your views here.
 def eliminar_anotacion(request,id):

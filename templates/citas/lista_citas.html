@@ -9,10 +9,11 @@
         <h4>
             <label for="searchCalendar">¿Consultar una fecha?</label>
         </h4>
-        <form class="form-inline mt-2 mt-md-0" action="#"
+        <form  class="form-inline mt-2 mt-md-0" action="#"
             method="get">
             <input name="q" class="form-control mr-sm-2" type="date" placeholder="Search"
             aria-label="Search" id="searchCalendar">
+            <input  class="btn btn-primary" type="submit" value="Buscar">
         </form>
     </div>
 
@@ -32,11 +33,20 @@
                         {{cita}} </br>
                         <small>{{cita.fecha_cita}}</small>
                         <small>{{cita.hora_cita}}</small>
+                        <br>
+                        <strong>{{cita.estado}}</strong>
                     </p>
                 </div>
                 <div class="actions">
+                    {% if cita.estado == "ATENDIDA" or cita.estado == "CANCELADA" %}
+                    <a href="{{ cita.get_absolute_url }}" class="btn btn-primary disabled" > ATENDER </a>
+                    {% else  %}
                     <a href="{{ cita.get_absolute_url }}" class="btn btn-primary "> ATENDER </a>
-                    <a href="{{ cita.get_absolute_url }}" class="btn btn-warning "> EDITAR </a>
+                    {% endif  %}
+                    <a href="{% url 'modificar_cita' cita.id %}" class="btn btn-warning "> EDITAR </a>
+                    <a href="{% url 'eliminar_cita' cita.id %}" class="btn btn-danger "> EIMINAR </a>
+                    
+			
                 </div>
             </div>
         {% endfor %}    

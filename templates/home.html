@@ -1,9 +1,67 @@
-{% extends '_base.html' %}
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Citas{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/citas.css' %}" />
+{% endblock css %}
+{% block content %} 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                {% comment %} <a href="{%url 'crear_cita' pk=1 %}" class="btn btn-success">Agendar cita</a> {% endcomment %}
+                <a href="#" class="tool" onclick="OpenModal()">Agendar nueva cita</a>
+            </div>
+        </div>
+    </div>
+    <div class="calendar">
+        <h4>
+            <label for="searchCalendar">¿Consultar una fecha?</label>
+        </h4>
+        <form class="form-inline mt-2 mt-md-0" action="#"
+            method="get">
+            <input name="q" class="form-control mr-sm-2" type="date" placeholder="Search"
+            aria-label="Search" id="searchCalendar">
+            <button type="submit" class="btn btn-primary btn-block mb-5">Buscar</button>
+        </form>
+    </div>
 
-{% block title %}
-HOME
-{% endblock title %}
+    <div class="citas">
+        {% for cita in cita_list %}
+            <div class="cita">
+                <div class="paciente">
+                    <p>
+                        Nombre: <strong>{{cita.paciente.nombre}}</strong></br>
+                        Telefono: <strong>{{cita.paciente.telefono}}</strong></br>
+                        Telefono Emergencia: <strong>{{cita.paciente.telefono_emergencia}}</strong></br>
+                        Email: <strong>{{cita.paciente.correo}}</strong></br>
+                    </p>
+                </div>
+                <div class="resumen">
+                    <p>
+                        {{cita}} </br>
+                        <small>{{cita.fecha_cita}}</small>
+                        <small>{{cita.hora_cita}}</small>
+                    </p>
+                </div>
+                <div class="actions">
+                    <a href="{{ cita.get_absolute_url }}" class="btn btn-primary "> ATENDER </a>
+                    <a href="{{ cita.get_absolute_url }}" class="btn btn-warning "> EDITAR </a>
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+ {% endblock  %}
 
-{% block content %}
-<h1>Homepage</h1>
-{% endblock content %}
+ {% block modal %}
+    {% include 'layout/modals/search_user.html' %}
+{% endblock modal %}
+
+{% block js %}
+    <script>
+        function OpenModal(){
+            $("#staticBackdrop").modal("show");
+        }
+
+        
+    </script>
+{% endblock js %}

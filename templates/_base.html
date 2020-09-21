@@ -37,6 +37,7 @@
           <a class="p-2 text-dark" href="{% url 'home' %}">About</a>
           {% if user.is_authenticated %}
           <a class="p-2 text-dark" href="{% url 'citas' %}">Citas del dia</a>
+          <a class="p-2 text-dark" href="{% url 'recetas' %}">Recetas</a>
           <a class="p-2 text-dark" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}
           <a class="p-2 text-dark" href="{% url 'account_login' %}">Log In</a>
@@ -45,6 +46,15 @@
           >
           {% endif %}
         </nav>
+          <form action="{% url 'search_by_name' %}" method="get" class="form-inline my-2 my-lg-0 pr-4">
+            <div class="form-group">
+            <label for="searchCalendar">
+            <i class="fa fa-search pr-2"></i>
+            </label>
+            <input name="q" class="form-control mr-sm-2" type="text" placeholder="Nombre/Apellido/Otro"
+                    aria-label="Buscar" id="searchCalendar">
+            </div>
+        </form>
       </div>
     </header>
     <div class="container">{% block content %} {% endblock content %}</div>
@@ -65,5 +75,8 @@
       integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
       crossorigin="anonymous"
     ></script>
+    {% block modal %} {% endblock %}
+    {% block js %}
+    {% endblock js %}
   </body>
 </html>

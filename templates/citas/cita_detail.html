@@ -31,7 +31,7 @@
             </p>
         </div>
         <div class="actions">
-            <a href="{{ cita.get_absolute_url }}" class="btn btn-primary "> TERMINAR CITA </a>
+            <a href="{% url 'atender_cita' cita.id %}" class="btn btn-primary "> TERMINAR CITA </a>
         </div>
     </div>
     <div class="anotaciones">
@@ -39,7 +39,6 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <td>No Anotacion</td>
                             <td>Descripcion </td>
                             <td>Opciones</td>			
                         </tr>		
@@ -48,11 +47,10 @@
                         
                     {% for anotacion in cita.anotaciones.all %}
                         <tr>
-                            <td>{{ anotacion.no_anotacion }}</td>
                             <td>{{ anotacion.descripcion }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{% url 'modificar_anotacion' anotacion.no_anotacion %}">Modificar</a>
-                                <a class="btn btn-danger mt-1" href="#">Eliminar</a>
+                                <a class="btn btn-danger mt-1" href="{% url 'eliminar_anotacion' anotacion.no_anotacion %}">Eliminar</a>
                             </td>
                         </tr>
                     {% endfor %}    
@@ -69,6 +67,39 @@
             <form action="{% url 'crear_anotacion' cita.id %}" method='POST'>{% csrf_token %}
                 {{ anotacion_form.as_p }}
                 <input class="btn btn-success btn-block" type='submit' value='Agregar anotación'/>
+            </form>
+        </div>
+    </div>
+    
+    <div class="recetas">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Detalle de la Receta </td>
+                    <td>Opciones</td>			
+                </tr>		
+            </thead>
+            <tbody>
+                
+            {% for receta in cita.recetas.all %}
+                <tr>
+                    <td>{{ receta.detalle_receta }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="#">Modificar</a>
+                        <a class="btn btn-danger mt-1" href="{% url 'eliminar_receta' receta.id %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}    
+            </tbody>
+        </table> 
+        
+        <div class="agregar_nueva2">
+            {% for field in receta_form.visible_fields %}
+                {{field.errors}}
+            {% endfor %}
+            <form action="{% url 'crear_receta' cita.id %}" method='POST'>{% csrf_token %}
+                {{ receta_form.as_p }}
+                <input class="btn btn-success btn-block" type='submit' value='Agregar receta'/>
             </form>
         </div>
     </div>

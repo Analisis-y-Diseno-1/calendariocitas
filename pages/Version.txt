@@ -1,4 +1,0 @@
-#Version 1.0.0
-Contiene todo el crud de anotaciones
-#Version 2.0.0
-Se agregaron CRUD de pacientes y tareas del sprint anterior.

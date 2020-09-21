@@ -46,7 +46,7 @@ def appointment_create(request, pk):
             
     return redirect('crear_cita', pk=pk, name=Paciente.objects.get(id=pk).nombre)
 
-<<<<<<< HEAD
+
 def appointment_delete(request, pk):
     query = request.POST
     if Cita.objects.filter(id=pk).exists():
@@ -77,9 +77,7 @@ def appointment_serve(request, pk):
             '¡Se ha atendido la cita!')
             
     return redirect('citas')
-<<<<<<< HEAD
-    
-=======
+
 
 def RecetaCreate(request, id):
     form = RecetaForm(request.POST)
@@ -92,8 +90,6 @@ def RecetaCreate(request, id):
         receta.save()
 
     return HttpResponseRedirect('/citas/'+id)
->>>>>>> d340026dd0ed27239f38442d25623f40ce06bf6c
-=======
 
 def ingresar_receta_off(request):
     form = recetaOffForm(request.POST)
@@ -103,4 +99,4 @@ def ingresar_receta_off(request):
     else:
         form = recetaOffForm()
     return render(request, 'citas/crear_receta_off.html', {'form': form})
->>>>>>> feature/h7-crearRecetaFueraCita
+

@@ -1,15 +1,10 @@
 from django.test import TestCase, SimpleTestCase
 from .models import Cita, Receta
-<<<<<<< HEAD
 from datetime import datetime, timedelta, date
 from users.models import Paciente
-<<<<<<< HEAD
 from cita.models import Cita
-=======
 from django.urls import reverse, resolve
 from .views import Cita
->>>>>>> d340026dd0ed27239f38442d25623f40ce06bf6c
-=======
 from .forms import recetaOffForm
 from datetime import datetime, timedelta, date
 
@@ -45,7 +40,6 @@ class test_isValidForm(TestCase):
         #self.assertTrue(user.is_active)
         #self.assertFalse(user.is_staff)
         #self.assertFalse(user.is_superuser)
->>>>>>> feature/h7-crearRecetaFueraCita
 # # Create your tests here.
 # '''
 # class ModelCitaTest(TestCase):

@@ -21,7 +21,10 @@
             <td>{{receta.cita.paciente.apellido}}</td>
             <td>{{receta.fecha}}</td>
             <td>{{receta.detalle_receta}}</td>
-            <td><a href={{receta.get_absolute_url}} class="btn btn-info">Ver receta</a></td>
+            <td>
+              <a href={{receta.get_absolute_url}} class="btn btn-info">Ver receta</a>
+              <a class="btn btn-danger" href="{% url 'eliminar_receta' receta.pk %}">Eliminar</a>
+            </td>
         </div>
     </tr>
     {% endfor %}

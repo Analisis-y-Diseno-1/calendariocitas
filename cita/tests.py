@@ -10,6 +10,15 @@ class test_url_receta_off(SimpleTestCase):
         response = self.client.get('/ingresar_receta_off/')
         self.assertNotEqual(response.status_code, 404)
 
+class test_isValidForm(TestCase):
+    data={
+            'fecha':'1996-02-17',
+            'detalle_receta':'esto es una receta',
+        }
+    def test_valid_form(self):
+        form = recetaOffForm(self.data)
+        self.assertTrue(form.is_valid())
+
 '''class EliminarRecetaTestCase(TestCase):
     def test_create_receta(self):
         now = datetime.now()

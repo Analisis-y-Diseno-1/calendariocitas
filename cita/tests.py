@@ -25,6 +25,22 @@ class test_isValidForm(TestCase):
         form = recetaOffForm(self.data)
         self.assertTrue(form.is_valid())
 
+class test_eliminarReceta(TestCase):
+    
+    def test_eliminar(self):
+        test_pasajero = Pasajero.objects.create(
+            nombre = "Carlos Salguero",
+            pasaporte = "N30-789456-1245",
+            prefijo="502",
+            telefono = "4738325267400582",
+            correo = "correo@gmail.com",
+            fecha_nacimiento = "1996-02-17",
+            sexo="MASCULINO")
+
+        pasajero = Pasajero.objects.get(pk=test_pasajero.pk)
+        response = self.client.get('/eliminar_pasajero/{0}'.format(pasajero.pk))
+        self.assertRedirects(response, '/pasajeros/')
+
 '''class EliminarRecetaTestCase(TestCase):
     def test_create_receta(self):
         now = datetime.now()

@@ -18,6 +18,7 @@ urlpatterns = [
     path('crear_receta/<id>', RecetaCreate, name='crear_receta'),
     path('ingresar_receta_off/', ingresar_receta_off, name='anotacion'),
 
+
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),
     path('citas/<int:pk>', AppointmentDetailView.as_view(), name='cita_detail'),

@@ -25,14 +25,25 @@ class test_isValidForm(TestCase):
         form = recetaOffForm(self.data)
         self.assertTrue(form.is_valid())
 
-'''class EliminarRecetaTestCase(TestCase):
+class test_eliminarReceta(TestCase):
+    
+    def test_eliminar(self):
+        test_receta = Receta.objects.create(
+            detalle_receta = "Descripcion de Receta"
+            )
+
+        receta = Receta.objects.get(pk=test_receta.pk)
+        response = self.client.get('/eliminar_receta/{0}'.format(receta.pk))
+        self.assertRedirects(response, '/recetas/')
+
+class EliminarRecetaTestCase(TestCase):
     def test_create_receta(self):
         now = datetime.now()
         #test_cista = Cita.objects.create(fecha=now, fecha_cita = now, estado = 'PENDIENTE',comentario ='Hello world')
         test_receta = Receta.objects.create(fecha=now, detalle_receta='Receta 222')
         #self.assertEqual(test_receta.detalle_receta,'Receta 222')   
         receta = Receta.objects.get(pk=test_receta.pk)
-        self.assertEqual(receta.detalle_receta,'Receta')'''
+        self.assertEqual(receta.detalle_receta,'Receta 222')
         
         #pass
         #self.assertEqual(user.username, 'will')
@@ -81,7 +92,7 @@ class ModelCitaTest(TestCase):
         self.assertEqual(citas[0].paciente, paciente)
         self.assertEqual(citas[0].estado, 'Pendiente')
         self.assertNotEqual(citas[0].delete()[0],0 )#Es 0 si no elimino nada
-
+'''
 class ModificarCita(TestCase):
     def test_modificar_cita(self):
         paciente = Paciente.objects.get(nombre='Lucia')
@@ -100,7 +111,7 @@ class ModificarCita(TestCase):
         self.assertEqual(getcita.comentario, 'Editado2')
         self.assertEqual(getcita.paciente_id, paciente.id)
         self.assertEqual(getcita.fecha, '2020-09-19 19:04:14.960231')
-
+'''
         
 class RecetaCreate(TestCase):
     

@@ -100,3 +100,9 @@ def ingresar_receta_off(request):
         form = recetaOffForm()
     return render(request, 'citas/crear_receta_off.html', {'form': form})
 
+def eliminar_receta(request,id):
+    receta = Receta.objects.get(pk=id)
+    receta.delete()
+    return redirect('recetas')
+	
+

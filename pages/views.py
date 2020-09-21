@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from anotacion.forms import AnotacionForm
 from cita.models import Cita, Receta
+from cita.forms import RecetaForm
 from django.db.models import Q
 
 class HomePageView(TemplateView):
@@ -30,13 +31,15 @@ class AppointmentDetailView(DetailView):
     template_name = 'citas/cita_detail.html'
     
     def get_form(self):
-        form = self.form_class(instance=AnotacionForm)
-        return form
+        form = self.form_class(instance=AnotacionForm),
+        form2 = self.form_class(isinstance=RecetaForm)
+        return {form, form2}
     
     def get_context_data(self, **kwargs):
         context = super(AppointmentDetailView, self).get_context_data(**kwargs)
         context.update({
-            'anotacion_form': AnotacionForm # get the form instance
+            'anotacion_form': AnotacionForm, # get the form instance
+            'receta_form': RecetaForm
         })
 
         return context

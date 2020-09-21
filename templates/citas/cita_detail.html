@@ -50,7 +50,7 @@
                             <td>{{ anotacion.descripcion }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{% url 'modificar_anotacion' anotacion.no_anotacion %}">Modificar</a>
-                                <a class="btn btn-danger mt-1" href="#">Eliminar</a>
+                                <a class="btn btn-danger mt-1" href="{% url 'eliminar_anotacion' anotacion.no_anotacion %}">Eliminar</a>
                             </td>
                         </tr>
                     {% endfor %}    
@@ -86,7 +86,7 @@
                     <td>{{ receta.detalle_receta }}</td>
                     <td>
                         <a class="btn btn-primary" href="#">Modificar</a>
-                        <a class="btn btn-danger mt-1" href="#">Eliminar</a>
+                        <a class="btn btn-danger mt-1" href="{% url 'eliminar_receta' receta.id %}">Eliminar</a>
                     </td>
                 </tr>
             {% endfor %}    

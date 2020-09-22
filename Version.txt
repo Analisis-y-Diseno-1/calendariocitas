@@ -4,3 +4,5 @@ Contiene todo el crud de anotaciones
 Se agregaron CRUD de pacientes y tareas del sprint anterior.
 #Version 3.0.0
 Se agrregó el CRUD de recetas y algunas funciones de citas. Así como también filtros para buscar citas por pacientes, citas, anotaciones y recetas.
+#Version 3.0.1
+Resolviendo hotfix de funcion Buscar cita por fecha.

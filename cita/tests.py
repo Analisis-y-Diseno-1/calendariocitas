@@ -152,3 +152,32 @@ class RecetaCreate(TestCase):
     def test_crear_receta(self):
         receta = Receta.objects.all()[0]
         self.assertEqual(receta.detalle_receta, 'Tiene dolor de garganta')
+
+class ModificarReceta(TestCase):
+    def test_modificar_receta(self):
+        fecha = datetime.now().strftime("%Y-%m-%d")
+        hora = datetime.now().strftime("%H:%M:%S")
+        paciente=Paciente.objects.create(
+            nombre = 'Jhon',
+            apellido = 'Nieve',
+            telefono = '48484848',
+            telefono_emergencia = '48484849',
+            correo = 'jhon@gmail.com',
+            fecha_nacimiento = '2020-12-12',
+            direccion = 'El norte castillo negro',
+            descripccion = 'Espadachin :v',
+            sexo = 'MASCULINO',
+        )
+        cita = Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()
+
+        Receta(detalle_receta='Tiene fiebre', cita=cita, fecha='2020-09-23').save()
+
+        getreceta = Receta.objects.get(cita=cita)
+
+        getreceta.detalle_receta = "Edicion" #Modificando receta
+        getreceta.save()
+
+        self.assertEqual(getreceta.detalle_receta,'Edicion')
+        self.assertEqual(getreceta.cita, cita)
+
+

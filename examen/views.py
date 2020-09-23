@@ -42,3 +42,6 @@ def ExaminationActionCreate(request, pk):
         examen.save()
 
     return HttpResponseRedirect('/crear_examen/'+pk)
+
+def ExaminationListView():
+    pass

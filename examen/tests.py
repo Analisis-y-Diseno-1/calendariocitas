@@ -43,3 +43,10 @@ class Examination_Create(TestCase):
     def test_examination_url_create(self):
         response = self.client.get(reverse('crear_examen', kwargs={'pk': '1'}))
         self.assertEqual(response.status_code,200)
+
+    def test_exams_list(self):
+        view = resolve('/list_exams/')
+        self.assertEqual(
+            view.func.__name__,
+            ExaminationCreate.as_view().__name__
+        )

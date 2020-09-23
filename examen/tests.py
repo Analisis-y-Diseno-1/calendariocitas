@@ -4,8 +4,9 @@ from .models import Examen
 from users.models import Paciente
 from datetime import datetime, timedelta, date
 from django.urls import reverse, resolve
+from .views import ExaminationCreate
 
-class ExaminationCreate(TestCase):
+class Examination_Create(TestCase):
     def setUp(self):
         fecha = datetime.now().strftime("%Y-%m-%d")
         hora = datetime.now().strftime("%H:%M:%S")
@@ -31,3 +32,11 @@ class ExaminationCreate(TestCase):
 
     def test_examination_status_code(self):
         self.assertEqual(self.response.status_code,200)
+
+    def test_examination_create_url_resolves_create_recetasview(self):
+        view = resolve('/crear_examen')
+        self.assertEqual(
+            view.func.__name__,
+            ExaminationCreate.as_view().__name__
+        )
+

@@ -41,5 +41,5 @@ class Examination_Create(TestCase):
         )
 
     def test_examination_url_create(self):
-        response = self.client.get(reverse('crear_examen'))
+        response = self.client.get(reverse('crear_examen', kwargs={'pk': '1'}))
         self.assertEqual(response.status_code,200)

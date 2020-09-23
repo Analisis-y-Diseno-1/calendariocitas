@@ -33,6 +33,10 @@
         <div class="actions">
             <a href="{% url 'atender_cita' cita.id %}" class="btn btn-primary "> TERMINAR CITA </a>
         </div>
+        <br>
+        <div class="actions">
+            <a href="{% url 'crear_examen' cita.id %}" class="btn btn-warning"> GENERAR EXÁMENES MÉDICOS</a>
+        </div>
     </div>
     <div class="anotaciones">
         {% if cita.anotaciones.all|length > 0%}

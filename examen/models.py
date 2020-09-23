@@ -9,3 +9,6 @@ class Examen(models.Model):
 
     def __str__(self):
         return self.descripcion
+    
+    def get_absolute_url(self):
+        return reverse("examination_detail", kwargs={"pk": self.pk})

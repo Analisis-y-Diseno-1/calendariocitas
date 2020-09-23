@@ -18,7 +18,8 @@ urlpatterns = [
     path('crear_receta/<id>', RecetaCreate, name='crear_receta'),
     path('ingresar_receta_off/', ingresar_receta_off, name='anotacion'),
     path('eliminar_receta/<id>', eliminar_receta, name='eliminar_receta'),
-
+    #  E X A M E N
+    
 
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),

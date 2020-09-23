@@ -85,7 +85,7 @@
                 <tr>
                     <td>{{ receta.detalle_receta }}</td>
                     <td>
-                        <a class="btn btn-primary" href="#">Modificar</a>
+                        <a class="btn btn-primary" href="{% url 'modificar_receta' receta.id %}">Modificar</a>
                         <a class="btn btn-danger mt-1" href="{% url 'eliminar_receta' receta.id %}">Eliminar</a>
                     </td>
                 </tr>

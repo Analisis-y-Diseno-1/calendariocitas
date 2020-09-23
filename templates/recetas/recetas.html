@@ -22,7 +22,8 @@
             <td>{{receta.fecha}}</td>
             <td>{{receta.detalle_receta}}</td>
             <td>
-              <a href={{receta.get_absolute_url}} class="btn btn-info">Ver receta</a>
+              <a href={{receta.get_absolute_url}} class="btn btn-info">Ver</a>
+              <a href="{% url 'modificar_receta' receta.pk %}" class="btn btn-warning">Modificar</a>
               <a class="btn btn-danger" href="{% url 'eliminar_receta' receta.pk %}">Eliminar</a>
             </td>
         </div>

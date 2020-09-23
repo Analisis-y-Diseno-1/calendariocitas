@@ -45,8 +45,12 @@ class Examination_Create(TestCase):
         self.assertEqual(response.status_code,200)
 
     def test_exams_list(self):
-        view = resolve('/list_exams/')
+        view = resolve('/listado_examenes/')
         self.assertEqual(
             view.func.__name__,
-            ExaminationCreate.as_view().__name__
+            ExaminationListView.as_view().__name__
         )
+
+    def test_list_exams_status(self):
+        response = client.get(reverse('listado_examenes'))
+        self.assertEqual(response.status_code,200)

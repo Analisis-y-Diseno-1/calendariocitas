@@ -43,5 +43,12 @@ def ExaminationActionCreate(request, pk):
 
     return HttpResponseRedirect('/crear_examen/'+pk)
 
-def ExaminationListView():
-    pass
+def ExaminationListView(request):
+    Examenes=Examen.objects.all()
+    data={
+        'lista_examenes':Examenes
+    }
+    return render(request, 'examen/listado_examenes.html',data)
+    
+
+    

@@ -4,7 +4,7 @@ from .models import Examen
 from users.models import Paciente
 from datetime import datetime, timedelta, date
 from django.urls import reverse, resolve
-from .views import ExaminationCreate
+from .views import ExaminationCreate,ExaminationListView
 
 class Examination_Create(TestCase):
     def setUp(self):
@@ -48,9 +48,9 @@ class Examination_Create(TestCase):
         view = resolve('/listado_examenes/')
         self.assertEqual(
             view.func.__name__,
-            ExaminationListView.as_view().__name__
+            ExaminationListView.__name__
         )
 
     def test_list_exams_status(self):
-        response = client.get(reverse('listado_examenes'))
+        response = self.client.get(reverse('ExaminationListView'))
         self.assertEqual(response.status_code,200)

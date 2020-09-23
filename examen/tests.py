@@ -40,3 +40,6 @@ class Examination_Create(TestCase):
             ExaminationCreate.as_view().__name__
         )
 
+    def test_examination_url_create(self):
+        response = self.client.get(reverse('crear_examen'))
+        self.assertEqual(response.status_code,200)

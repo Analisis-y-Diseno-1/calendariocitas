@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'cita',
     'anotacion',
     'users',
+    'examen',
     'behave_django',
 ]
 

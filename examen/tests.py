@@ -23,7 +23,7 @@ class ExaminationCreate(TestCase):
         cita = Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='Test', paciente=paciente).save()
 
         Examen(descripcion='Fractura en el pie', cita=cita, fecha=fecha).save()
-        self.response = self.client.get('/crear_examen/6')
+        self.response = self.client.get('/crear_examen/1')
 
     def test_examamination_model(self):
         examen = Examen.objects.all()[0]

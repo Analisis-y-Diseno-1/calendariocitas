@@ -1,0 +1,41 @@
+{% extends '_base.html' %} 
+{% load static %}
+{% block title %}Exámenes Clínicos{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/cita_atender.css' %}" />
+{% endblock css %}
+{% block content %} 
+
+<div class="citas">
+    <div class="cita">
+        <div class="paciente">
+            <p>
+                Nombre: <strong>{{cita.paciente.nombre}}</strong></br>
+                Telefono: <strong>{{cita.paciente.telefono}}</strong></br>
+                Telefono Emergencia: <strong>{{cita.paciente.telefono_emergencia}}</strong></br>
+                Email: <strong>{{cita.paciente.correo}}</strong></br>
+            </p>
+        </div>
+        <div class="observaciones">
+            <p>
+                <strong>OBSERVACION:</strong>
+                </br>
+                {{cita.paciente.descripccion}}
+            </p>
+        </div>
+        <div class="resumen">
+            <p>
+                {{cita}} </br>
+                <small>{{cita.fecha_cita}}</small>
+                <small>{{cita.hora_cita}}</small>
+            </p>
+        </div>
+        <div class="actions">
+            <a href="{% url 'atender_cita' cita.id %}" class="btn btn-primary "> TERMINAR GENERACIÓN DE EXÁMENES </a>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

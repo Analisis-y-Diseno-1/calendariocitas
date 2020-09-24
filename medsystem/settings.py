@@ -181,14 +181,11 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-
-
-#EMAIL CONFIGURATION
-
+# EMAIL SETTINGS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'info@mercurywapps.com'
-EMAIL_HOST_PASSWORD = 'Mercurio!3385'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='medsistemnotify@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_HOST='mail.privateemail.com'
-EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD='XYvBPs9HiQWKL8r'
+EMAIL_USE_SSL = True
 EMAIL_PORT = 465

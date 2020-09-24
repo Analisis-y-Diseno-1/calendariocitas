@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ExaminationForm
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
-
+from django.template import Template, Context
 # Create your views here.
 #def ExaminationCreate(request, pk):
 

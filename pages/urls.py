@@ -7,6 +7,7 @@ from .views import AppointmentCreate
 from .views import SearchResultsListView
 from .views import RecetasListView, RecetasDetailView
 from .views import modificar_cita
+from examen.views import *
 
 urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
@@ -18,6 +19,9 @@ urlpatterns = [
     path('crear_receta/<id>', RecetaCreate, name='crear_receta'),
     path('ingresar_receta_off/', ingresar_receta_off, name='anotacion'),
     path('eliminar_receta/<id>', eliminar_receta, name='eliminar_receta'),
+    #  E X A M E N
+    path('crear_examen/<pk>', ExaminationCreate.as_view(), name='crear_examen'),
+    path('accion_crear/<pk>', ExaminationActionCreate, name='accion_crear'),
 
 
     # CITAS

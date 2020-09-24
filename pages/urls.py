@@ -22,7 +22,7 @@ urlpatterns = [
     #  E X A M E N
     path('crear_examen/<pk>', ExaminationCreate.as_view(), name='crear_examen'),
     path('accion_crear/<pk>', ExaminationActionCreate, name='accion_crear'),
-
+    path('listado_examenes/', ExaminationListView, name='ExaminationListView'),
 
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),

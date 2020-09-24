@@ -9,6 +9,8 @@
         <div class="row">
             <div class="col">
                 {% comment %} <a href="{%url 'crear_cita' pk=1 %}" class="btn btn-success">Agendar cita</a> {% endcomment %}
+                <a href="{%url 'citas' %}" class="btn btn-success">Ver citas</a>
+                <a href="{% url 'ExaminationListView' %}" class="btn btn-info">Ver Examenes</a>
                 <a href="#" class="tool" onclick="OpenModal()">Agendar nueva cita</a>
             </div>
         </div>

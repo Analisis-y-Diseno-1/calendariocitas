@@ -127,5 +127,14 @@ def eliminar_receta(request,id):
     receta = Receta.objects.get(pk=id)
     receta.delete()
     return redirect('recetas')
-	
 
+def modificar_receta(request,id):
+    recet = Receta.objects.get(pk=id)
+    if request.method == 'GET':
+        form = RecetaForm(instance=recet)
+    else:
+        form = RecetaForm(request.POST,instance=recet)
+        if form.is_valid():
+            form.save()
+        return redirect('recetas')
+    return render(request,'citas/crear_receta_off.html', {'form': form})

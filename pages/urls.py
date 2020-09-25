@@ -1,7 +1,7 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion, annotationCreate
 from users.views import listado_pacientes,modificar_paciente, ingresar_paciente, detalle_paciente,reporte_historial_clinico
-from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off,eliminar_receta
+from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off,eliminar_receta, modificar_receta
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 from .views import AppointmentCreate
 from .views import SearchResultsListView
@@ -19,10 +19,12 @@ urlpatterns = [
     path('crear_receta/<id>', RecetaCreate, name='crear_receta'),
     path('ingresar_receta_off/', ingresar_receta_off, name='anotacion'),
     path('eliminar_receta/<id>', eliminar_receta, name='eliminar_receta'),
+    path('modificar_receta/<id>', modificar_receta, name='modificar_receta'),
     #  E X A M E N
     path('crear_examen/<pk>', ExaminationCreate.as_view(), name='crear_examen'),
     path('accion_crear/<pk>', ExaminationActionCreate, name='accion_crear'),
     path('listado_examenes/', ExaminationListView, name='ExaminationListView'),
+    
 
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),

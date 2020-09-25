@@ -22,7 +22,7 @@
             <td>{{ examen.descripcion }}</td>
             <td>{{ examen.cita.paciente.nombre }} {{ examen.cita.paciente.apellido }}</td>
 			<td>
-				<a class="btn btn-primary" href="{% url 'modificar_cita' examen.pk %}">Modificar</a>
+				<a class="btn btn-primary" href="{% url 'modificar_examen' examen.id %}">Modificar</a>
 				<a class="btn btn-danger" href="{% url 'eliminar_cita' examen.pk %}">Eliminar</a>
 			</td>
 		</tr>

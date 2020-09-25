@@ -49,6 +49,19 @@ def ExaminationListView(request):
         'lista_examenes':Examenes
     }
     return render(request, 'examen/listado_examenes.html',data)
-    
 
+def ExaminationEdit(request, pk):
+    examen = Examen.objects.get(pk=pk)
+
+    data = {
+        'form': ExaminationForm(instance=examen)
+    }
+
+    if request.method == 'POST':
+        form = ExaminationForm(data=request.POST, instance=examen)
+        if form.is_valid():
+            form.save()
+            data['mensaje'] = "Examen modificado correctamente"
+            data['form'] = form
+    return render(request, 'examen/modificar_examen.html',data)
     

@@ -165,7 +165,7 @@ class ModificarReceta(TestCase):
             correo = 'jhon@gmail.com',
             fecha_nacimiento = '2020-12-12',
             direccion = 'El norte castillo negro',
-            descripccion = 'Espadachin :v',
+            descripccion = 'Guardian',
             sexo = 'MASCULINO',
         )
         cita = Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()

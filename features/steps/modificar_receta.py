@@ -7,7 +7,7 @@ from django.test import TestCase
 @given('Existen recetas registradas1')
 def step_impl(context):
     #ponemos el sistema en un estado inicial.
-    #Ingresamos citas en la BD
+    #Ingresamos receta en la BD
     fecha = datetime.now().strftime("%Y-%m-%d")
     hora = datetime.now().strftime("%H:%M:%S")
     paciente=Paciente.objects.create(

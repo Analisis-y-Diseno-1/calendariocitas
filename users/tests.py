@@ -3,6 +3,7 @@ from django.urls import reverse, resolve
 from django.contrib.auth import get_user_model
 from users.models import Paciente
 from datetime import datetime
+from .views import reporte_historial_clinico
 
 class CustomUserTests(TestCase):
 

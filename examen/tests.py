@@ -80,3 +80,12 @@ class ModificarExamen(TestCase):
         getExamen.save()
 
         self.assertEqual(getExamen.descripcion,'Examen de la vista')
+
+class EliminarExamen(TestCase):
+    def test_eliminar_examen(self):
+       #Creando examen
+        exam = Examen(descripcion='Examen de Sangre', cita_id=1, fecha='2020-09-23').save()
+        self.assertEqual(Examen.objects.all(),1) #Verificando que si exista un examen
+        #Eliminando examen
+        exam.delete()
+        self.assertEqual(Examen.objects.all(),0) #Verificando que se haya eliminado el examen

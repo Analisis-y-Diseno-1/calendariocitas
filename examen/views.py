@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ExaminationForm
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView
-
+from django.template import Template, Context
 # Create your views here.
 #def ExaminationCreate(request, pk):
 
@@ -42,3 +42,13 @@ def ExaminationActionCreate(request, pk):
         examen.save()
 
     return HttpResponseRedirect('/crear_examen/'+pk)
+
+def ExaminationListView(request):
+    Examenes=Examen.objects.all()
+    data={
+        'lista_examenes':Examenes
+    }
+    return render(request, 'examen/listado_examenes.html',data)
+    
+
+    

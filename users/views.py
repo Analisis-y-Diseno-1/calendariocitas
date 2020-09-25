@@ -1,6 +1,14 @@
 from django.shortcuts import render,redirect
 from .models import Paciente
+from cita.models import Cita,Receta
+from anotacion.models import Anotacion
+from examen.models import Examen
 from .forms import pacienteForm
+from django.http import HttpResponse
+from django.views.generic import View
+from django.template.loader import get_template
+from .utils import render_to_pdf 
+
 # Create your views here.
 # def listado_pacientes(request):
 #     pacientes=Paciente.objects.all()
@@ -57,3 +65,16 @@ def detalle_paciente(request, correo):
     if request.method == 'GET':
         form = pacienteForm(instance=paciente)
     return render(request,'paciente/detalle_paciente.html',{'form':form})
+
+class reporte_historial_clinico(View):
+    def get(self, request, *args, **kwargs):
+        template =  get_template('paciente/reporte_pacientes.html')
+        data = {
+             'Pacientes':Paciente.objects.all(),
+             'Citas':Cita.objects.all(),
+             'Anotaciones':Anotacion.objects.all(),
+             'Recetas':Receta.objects.all(),
+             'Examenes':Examen.objects.all(),
+        }
+        pdf = render_to_pdf('paciente/reporte_pacientes.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')

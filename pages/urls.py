@@ -1,6 +1,6 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion, annotationCreate
-from users.views import listado_pacientes,modificar_paciente, ingresar_paciente, detalle_paciente
+from users.views import listado_pacientes,modificar_paciente, ingresar_paciente, detalle_paciente,reporte_historial_clinico
 from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off,eliminar_receta
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 from .views import AppointmentCreate
@@ -43,4 +43,7 @@ urlpatterns = [
     path('modificar_paciente/<correo>', modificar_paciente, name='modificar_paciente'),
     path('ingresar_paciente/', ingresar_paciente, name='ingresar_paciente'),
     path('detalle_paciente/<correo>', detalle_paciente, name='detalle_paciente'),
+    # REPORTES historial clinico
+    path('historial_clinico/', reporte_historial_clinico.as_view(), name='reporte_historial_clinico'),  
+    #path('historial_clinico/<int:pk>', reporte_historial_clinico, name='reporte_historial_clinico'),
 ]

@@ -101,4 +101,14 @@ class EditPatient(TestCase):
         self.assertEqual(paciente.direccion, 'zona 6')
         self.assertEqual(paciente.sexo, 'masculino')
 
-        
+class PatientHistory(TestCase):
+    def test_Historial_clinico(self):
+        view = resolve('/historial_clinico/')
+        self.assertEqual(
+            view.func.__name__,
+            reporte_historial_clinico.__name__
+        )
+
+    def test_Historial_clinico_satus(self):
+        response = self.client.get(reverse('reporte_historial_clinico'))
+        self.assertEqual(response.status_code,200)         

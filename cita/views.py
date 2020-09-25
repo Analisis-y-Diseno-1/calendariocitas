@@ -7,6 +7,7 @@ from users.models import Paciente
 from .forms import RecetaForm
 from datetime import datetime 
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail
 
 def appointment_update(request, pk):
     query = request.POST
@@ -37,12 +38,24 @@ def appointment_create(request, pk):
             paciente=Paciente.objects.get(id=pk),
         )
         cita.save()
+        send_mail(
+            'Receta',
+            "{0}, para el dia {1} a la hora {2}".format(
+                cita.comentario,
+                cita.fecha_cita,
+                cita.hora_cita
+            ),
+            'medsistemnotify@gmail.com',
+            [cita.paciente.correo],
+            fail_silently=False,
+        )
     except:
         messages.add_message(request, messages.ERROR, 
         'ERROR: Ha ocurrido un error al crear la cita, intenta de nuevo.')
     else:
         messages.add_message(request, messages.INFO, 
         '¡Hemos guardado tus cambios!')
+        
             
     return redirect('crear_cita', pk=pk, name=Paciente.objects.get(id=pk).nombre)
 
@@ -88,6 +101,16 @@ def RecetaCreate(request, id):
         cita = Cita.objects.get(id=id)
         receta.cita = cita
         receta.save()
+        
+        send_mail(
+            'Receta',
+            receta.detalle_receta,
+            'medsistemnotify@gmail.com',
+            [receta.cita.paciente.correo],
+            fail_silently=False,
+        )
+
+
 
     return HttpResponseRedirect('/citas/'+id)
 

@@ -1,12 +1,13 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion, annotationCreate
 from users.views import listado_pacientes,modificar_paciente, ingresar_paciente, detalle_paciente,reporte_historial_clinico
-from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off,eliminar_receta, modificar_receta
+from cita.views import appointment_create, appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off,eliminar_receta, modificar_receta
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
 from .views import AppointmentCreate
 from .views import SearchResultsListView
 from .views import RecetasListView, RecetasDetailView
-from .views import modificar_cita
+from .views import AppointmentUpdateView
+from cita.views import appointment_update
 from examen.views import *
 
 urlpatterns = [
@@ -34,7 +35,9 @@ urlpatterns = [
     path('act_crear_cita/<int:pk>', appointment_create, name="appointment_create"),
     path('eliminar_cita/<int:pk>', appointment_delete, name="eliminar_cita"),
     path('atender_cita/<int:pk>', appointment_serve, name="atender_cita"),
-    path('modificar_cita/<int:pk>/', modificar_cita, name="modificar_cita"),
+    path('modificar_cita/<int:pk>', AppointmentUpdateView.as_view(), name="modificar_cita"),
+    path('update/<int:pk>', appointment_update, name="appointment_update"),
+
     # ANOTACIONES
     path('anotacion/', crear_anotacion, name='anotacion'),
     path('crear_anotacion/<id>', annotationCreate, name='crear_anotacion'),

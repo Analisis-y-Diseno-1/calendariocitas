@@ -22,5 +22,6 @@ urlpatterns = [
     # USER MANAGMENT URLS
     path('accounts/', include('allauth.urls')),
     # LOCAL APPS 
+    # path('appointments/', include('cita.urls')),
     path('',include('pages.urls')),
 ]

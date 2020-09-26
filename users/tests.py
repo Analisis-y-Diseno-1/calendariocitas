@@ -112,4 +112,15 @@ class PatientHistory(TestCase):
 
     def test_Historial_clinico_satus(self):
         response = self.client.get(reverse('reporte_historial_clinico'))
-        self.assertEqual(response.status_code,200)         
+        self.assertEqual(response.status_code,200)
+
+class PatientHistoryPaciente(TestCase):
+    
+
+    def test_Historial_clinicoPaciente_satus(self):
+        test_Paciente = Paciente.objects.create(nombre='Francisco', apellido='Hernández', telefono=12345678, telefono_emergencia=12345678,
+        correo='henriscoh1995@gmail.com', fecha_nacimiento='1995-12-12', direccion='zona 6', sexo='masculino') 
+        paciente = Paciente.objects.get(pk=test_Paciente.pk)
+        response = self.client.get('/historial_clinicoPaciente/{0}'.format(paciente.pk))
+        #response = self.client.get('/modificar_pasajero/{0}'.format(pasajero.pk))
+        self.assertEqual(response.status_code,200)

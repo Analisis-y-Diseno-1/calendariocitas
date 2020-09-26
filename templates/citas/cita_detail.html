@@ -30,12 +30,17 @@
                 <small>{{cita.hora_cita}}</small>
             </p>
         </div>
-        <div class="actions">
+        <div class="actions" >
             <a href="{% url 'atender_cita' cita.id %}" class="btn btn-primary "> TERMINAR CITA </a>
         </div>
         <br>
         <div class="actions">
             <a href="{% url 'crear_examen' cita.id %}" class="btn btn-warning"> GENERACIÓN DE EXÁMENES MÉDICOS</a>
+        </div>
+        
+
+        <div class="actions" style="width:800px; margin:0 auto;">
+            <a href="{% url 'reporte_historial_clinicoPaciente' cita.paciente.id %}" class="btn btn-info"> HISTORIAL MÉDICOS</a>
         </div>
     </div>
     <div class="anotaciones">

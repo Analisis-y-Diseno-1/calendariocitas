@@ -22,12 +22,14 @@ urlpatterns = [
     path('ingresar_receta_off/<id>', ingresar_receta_off, name='ingresar_receta_off'),
     path('eliminar_receta/<id>', eliminar_receta, name='eliminar_receta'),
     path('modificar_receta/<id>', modificar_receta, name='modificar_receta'),
+    
     #  E X A M E N
     path('crear_examen/<pk>', ExaminationCreate.as_view(), name='crear_examen'),
     path('accion_crear/<pk>', ExaminationActionCreate, name='accion_crear'),
     path('listado_examenes/', ExaminationListView, name='ExaminationListView'),
     path('modificar_examen/<pk>/', ExaminationEdit, name='modificar_examen'),
-
+    path('eliminar_examen/<pk>/', ExaminationDelete, name='eliminar_examen'),
+    
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),
     path('citas/<int:pk>', AppointmentDetailView.as_view(), name='cita_detail'),

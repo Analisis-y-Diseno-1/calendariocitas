@@ -17,7 +17,6 @@ def appointment_update(request, pk):
             cita.fecha_cita=query['fecha_cita']
             cita.hora_cita=query['hora_cita']
             cita.comentario=query['comentario']
-
             cita.save()
         except:
             messages.add_message(request, messages.ERROR, 
@@ -26,7 +25,7 @@ def appointment_update(request, pk):
             messages.add_message(request, messages.INFO, 
             '¡Hemos guardado tus cambios!')
             
-    return redirect('cita_detail', pk=pk)
+    return redirect('citas')
 
 def appointment_create(request, pk):
     query = request.POST

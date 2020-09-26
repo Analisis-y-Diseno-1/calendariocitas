@@ -49,7 +49,7 @@
                     <td>{{ examen.descripcion }}</td>
                     <td>
                         <a class="btn btn-primary" href="{% url 'modificar_examen' examen.id %}">Modificar</a>
-                        <a class="btn btn-danger mt-1" href="#">Eliminar</a>
+                        <a class="btn btn-danger mt-1" href="{% url 'eliminar_examen' examen.id %}">Eliminar</a>
                     </td>
                 </tr>
             {% endfor %}    

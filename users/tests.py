@@ -118,4 +118,4 @@ class PatientHistoryPaciente(TestCase):
 
     def test_Historial_clinicoPaciente_satus(self):
         response = self.client.get(reverse('reporte_historial_clinicoPaciente'))
-        self.assertEqual(response.status_code,200)         
+        self.assertEqual(response.status_code,200)

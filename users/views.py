@@ -78,3 +78,18 @@ class reporte_historial_clinico(View):
         }
         pdf = render_to_pdf('paciente/reporte_pacientes.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+
+def reporte_historial_clinicoPaciente(request,id):
+
+    template =  get_template('paciente/reporte_paciente.html')
+    paciente = Paciente.objects.get(pk=id)
+    citas = Cita.objects.filter(paciente=paciente)
+    data = {
+        'Pacientes':paciente,
+        'Citas':citas,
+        'Anotaciones':Anotacion.objects.all(),
+        'Recetas':Receta.objects.all(),
+        'Examenes':Examen.objects.all(),
+    }
+    pdf = render_to_pdf('paciente/reporte_paciente.html', data)
+    return HttpResponse(pdf, content_type='application/pdf')

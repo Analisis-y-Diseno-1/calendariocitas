@@ -25,7 +25,8 @@ urlpatterns = [
     path('accion_crear/<pk>', ExaminationActionCreate, name='accion_crear'),
     path('listado_examenes/', ExaminationListView, name='ExaminationListView'),
     path('modificar_examen/<pk>/', ExaminationEdit, name='modificar_examen'),
-
+    path('eliminar_examen/<pk>/', ExaminationDelete, name='eliminar_examen'),
+    
     # CITAS
     path('citas', AppointmentsListView.as_view(), name='citas'),
     path('citas/<int:pk>', AppointmentDetailView.as_view(), name='cita_detail'),

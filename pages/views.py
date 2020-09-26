@@ -5,6 +5,7 @@ from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from anotacion.forms import AnotacionForm
 from cita.models import Cita, Receta
 from cita.forms import RecetaForm
+from users.models import Paciente
 from django.db.models import Q
 
 class HomePageView(TemplateView):
@@ -32,6 +33,7 @@ class RecetasListView(ListView):
     model = Receta
     context_object_name="recetas"
     template_name='recetas/lista_de_recetas.html'
+
 
 class RecetasDetailView(DetailView):
     model = Receta

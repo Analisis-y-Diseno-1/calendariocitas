@@ -17,7 +17,6 @@ def appointment_update(request, pk):
             cita.fecha_cita=query['fecha_cita']
             cita.hora_cita=query['hora_cita']
             cita.comentario=query['comentario']
-
             cita.save()
         except:
             messages.add_message(request, messages.ERROR, 
@@ -26,7 +25,7 @@ def appointment_update(request, pk):
             messages.add_message(request, messages.INFO, 
             '¡Hemos guardado tus cambios!')
             
-    return redirect('cita_detail', pk=pk)
+    return redirect('citas')
 
 def appointment_create(request, pk):
     query = request.POST
@@ -114,11 +113,17 @@ def RecetaCreate(request, id):
 
     return HttpResponseRedirect('/citas/'+id)
 
-def ingresar_receta_off(request):
+def ingresar_receta_off(request,id):
     form = recetaOffForm(request.POST)
+
     if form.is_valid():
-        form.save()
-        return redirect('recetas')
+        receta = form.save(commit=False)
+        
+        paciente = Paciente.objects.get(pk=id)
+        receta.paciente = paciente
+        receta.save()
+        #form.save()
+        return redirect('listado_pacientes')
     else:
         form = recetaOffForm()
     return render(request, 'citas/crear_receta_off.html', {'form': form})
@@ -127,6 +132,20 @@ def eliminar_receta(request,id):
     receta = Receta.objects.get(pk=id)
     receta.delete()
     return redirect('recetas')
+
+'''
+def get_recetas_paciente(request,id):
+	paciente = Paciente.objects.get(pk = id)
+    recetas = Receta.objects.get(paciente = paciente)
+
+    if request.method == 'GET':
+        form = receta2Form(instance=recetas)
+    else:
+        form = pasajeroForm(request.POST,instance=pasajero)
+        if form.is_valid():
+            form.save()
+        return redirect('recetas')
+    return redirect('listado_pacientes')'''
 
 def modificar_receta(request,id):
     recet = Receta.objects.get(pk=id)

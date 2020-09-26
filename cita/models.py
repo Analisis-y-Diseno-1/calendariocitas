@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from users.models import Paciente
 # Create your models here.
 class Cita(models.Model):
     ESTADO_OPCIONES = [
@@ -26,6 +27,7 @@ class Receta(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     detalle_receta = models.CharField(max_length=300)
     cita = models.ForeignKey("Cita", related_name="recetas", on_delete=models.CASCADE, blank=True, null=True)
+    paciente = models.ForeignKey(Paciente, related_name="recetasPaciente", on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.detalle_receta

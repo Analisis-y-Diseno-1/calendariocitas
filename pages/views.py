@@ -5,6 +5,7 @@ from django.views.generic import TemplateView, ListView, DetailView, UpdateView
 from anotacion.forms import AnotacionForm
 from cita.models import Cita, Receta
 from cita.forms import RecetaForm
+from users.models import Paciente
 from django.db.models import Q
 
 class HomePageView(TemplateView):
@@ -33,6 +34,7 @@ class RecetasListView(ListView):
     context_object_name="recetas"
     template_name='recetas/lista_de_recetas.html'
 
+
 class RecetasDetailView(DetailView):
     model = Receta
     context_object_name="receta"
@@ -56,6 +58,11 @@ class AppointmentDetailView(DetailView):
         })
 
         return context
+    
+class AppointmentUpdateView(DetailView):
+    model = Cita
+    context_object_name = 'cita'
+    template_name = 'citas/actualizar_cita.html'
 
 class AppointmentCreate(TemplateView):
     template_name = 'citas/crear_cita.html'
@@ -101,22 +108,22 @@ class SearchResultsListView(ListView):
 
         return context
 
-def modificar_cita(request, pk):
-    query = request.POST
-    if Cita.objects.filter(id=pk).exists():
-        try:
-            cita = Cita.objects.get(id=pk)
-            cita.fecha_cita=query['fecha_cita']
-            cita.hora_cita=query['hora_cita']
-            cita.comentario=query['comentario']
+# def modificar_cita(request, pk):
+#     query = request.POST
+#     if Cita.objects.filter(id=pk).exists():
+#         try:
+#             cita = Cita.objects.get(id=pk)
+#             cita.fecha_cita=query['fecha_cita']
+#             cita.hora_cita=query['hora_cita']
+#             cita.comentario=query['comentario']
 
-            cita.save()
-        except:
-            messages.add_message(request, messages.ERROR,'Error, No se pudo actualizar cita')
+#             cita.save()
+#         except:
+#             messages.add_message(request, messages.ERROR,'Error, No se pudo actualizar cita')
     
-        else:
-            messages.add_message(request, messages.INFO,'Se realizaron los cambios con exito!')
+#         else:
+#             messages.add_message(request, messages.INFO,'Se realizaron los cambios con exito!')
     
-    return redirect('citas/crear_cita.html',pk=pk)
+#     return redirect('citas/actualizar_cita.html',pk=pk)
             
     

@@ -20,6 +20,7 @@ urlpatterns = [
     path('ingresar_receta_off/', ingresar_receta_off, name='anotacion'),
     path('eliminar_receta/<id>', eliminar_receta, name='eliminar_receta'),
     path('modificar_receta/<id>', modificar_receta, name='modificar_receta'),
+    
     #  E X A M E N
     path('crear_examen/<pk>', ExaminationCreate.as_view(), name='crear_examen'),
     path('accion_crear/<pk>', ExaminationActionCreate, name='accion_crear'),

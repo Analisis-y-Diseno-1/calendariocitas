@@ -65,6 +65,7 @@ def ExaminationEdit(request, pk):
             data['form'] = form
     return render(request, 'examen/modificar_examen.html',data)
     
+
 def ExaminationDelete(request, pk):
     query = request.POST
     if Examen.objects.filter(id=pk).exists():
@@ -77,3 +78,10 @@ def ExaminationDelete(request, pk):
             messages.add_message(request, messages.INFO,'¡Se ha eliminado el examen!')
             
     return redirect('/listado_examenes/')
+
+'''
+def ExaminationDelete(request,id):
+    exam = Examen.objects.get(pk=id)
+    exam.delete()
+    return redirect(to="listado_examenes")
+'''

@@ -37,3 +37,5 @@ def step_impl(context):
     receta = Receta.objects.all()
     
     assert receta[0].detalle_receta == "Tomar 2 pastillas de panadol cada 8 horas por 10 días"
+
+    

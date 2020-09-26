@@ -4,7 +4,7 @@ from .models import Examen
 from users.models import Paciente
 from datetime import datetime, timedelta, date
 from django.urls import reverse, resolve
-from .views import ExaminationCreate
+from .views import ExaminationCreate,ExaminationListView
 
 class Examination_Create(TestCase):
     def setUp(self):
@@ -43,3 +43,40 @@ class Examination_Create(TestCase):
     def test_examination_url_create(self):
         response = self.client.get(reverse('crear_examen', kwargs={'pk': '1'}))
         self.assertEqual(response.status_code,200)
+
+    def test_exams_list(self):
+        view = resolve('/listado_examenes/')
+        self.assertEqual(
+            view.func.__name__,
+            ExaminationListView.__name__
+        )
+
+    def test_list_exams_status(self):
+        response = self.client.get(reverse('ExaminationListView'))
+        self.assertEqual(response.status_code,200)
+
+class ModificarExamen(TestCase):
+    def test_modificar_examen(self):
+        fecha = datetime.now().strftime("%Y-%m-%d")
+        hora = datetime.now().strftime("%H:%M:%S")
+        paciente=Paciente.objects.create(
+            nombre = 'Jhon',
+            apellido = 'Nieve',
+            telefono = '48484848',
+            telefono_emergencia = '48484849',
+            correo = 'jhon@gmail.com',
+            fecha_nacimiento = '2020-12-12',
+            direccion = 'El norte castillo negro',
+            descripccion = 'Guardian',
+            sexo = 'MASCULINO',
+        )
+        cita = Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()
+
+        Examen(descripcion='Examen de Sangre', cita_id=cita, fecha='2020-09-23').save()
+
+        getExamen = Examen.objects.all()[0]
+
+        getExamen.descripcion = "Examen de la vista" #modificando examen
+        getExamen.save()
+
+        self.assertEqual(getExamen.descripcion,'Examen de la vista')

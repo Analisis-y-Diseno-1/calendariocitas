@@ -48,3 +48,13 @@ class recetaOffForm(forms.ModelForm):
         widgets = {
             'detalle_receta': forms.Textarea(attrs={'class':'form-control'})
         }
+'''
+class receta2Form(forms.ModelForm):
+    class Meta:
+        model = Receta
+        fields = [
+            'fecha',
+            'detalle_receta',
+            'paciente',
+            ]
+            '''

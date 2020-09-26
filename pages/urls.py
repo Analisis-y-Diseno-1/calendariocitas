@@ -15,9 +15,10 @@ urlpatterns = [
     path('search_results/', SearchResultsListView.as_view(), name="search_by_name"),
     # Recetas
     path('recetas/', RecetasListView.as_view(), name="recetas"),
+    #path('recetas2/', RecetasListView2.as_view(), name="recetas"),
     path('recetas/<int:pk>', RecetasDetailView.as_view(), name="receta_detail"),
     path('crear_receta/<id>', RecetaCreate, name='crear_receta'),
-    path('ingresar_receta_off/', ingresar_receta_off, name='anotacion'),
+    path('ingresar_receta_off/<id>', ingresar_receta_off, name='ingresar_receta_off'),
     path('eliminar_receta/<id>', eliminar_receta, name='eliminar_receta'),
     #  E X A M E N
     path('crear_examen/<pk>', ExaminationCreate.as_view(), name='crear_examen'),

@@ -22,6 +22,8 @@
 			<td>
 				<a class="btn btn-primary" href="{% url 'modificar_paciente' paciente.correo %}">Modificar Datos</a> 
 				<a class="btn btn-primary" href="{% url 'detalle_paciente' paciente.correo %}">Ver</a> 
+				<a class="btn btn-warning" href="{% url 'ingresar_receta_off' paciente.pk %}">Crear Receta</a>
+				<a class="btn btn-success" href="{% url 'recetas'%}">Ver Recetas</a>
 			</td>
 		</tr>
 		{% endfor %}

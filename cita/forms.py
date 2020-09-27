@@ -33,7 +33,7 @@ class RecetaForm(forms.ModelForm):
             'detalle_receta': 'Detalle de la Receta',
         }
         widgets = {
-            'detalle_receta': forms.Textarea(attrs={'class': 'form_control', 'cols': 15, 'rows': 3}),
+            'detalle_receta': forms.Textarea(attrs={'class': 'form_control', 'cols': 60, 'rows': 8}),
         }
 
 class recetaOffForm(forms.ModelForm):
@@ -48,3 +48,13 @@ class recetaOffForm(forms.ModelForm):
         widgets = {
             'detalle_receta': forms.Textarea(attrs={'class':'form-control'})
         }
+'''
+class receta2Form(forms.ModelForm):
+    class Meta:
+        model = Receta
+        fields = [
+            'fecha',
+            'detalle_receta',
+            'paciente',
+            ]
+            '''

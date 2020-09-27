@@ -11,6 +11,11 @@ psycopg2-binary = "*"
 django-allauth = "*"
 django-crispy-forms = "*"
 behave-django = "*"
+reportlab = "*"
+xhtml2pdf = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

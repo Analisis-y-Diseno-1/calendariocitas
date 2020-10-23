@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, date
 from users.models import Paciente
 from cita.models import Cita
 from django.urls import reverse, resolve
-from .views import Cita
+from .views import Cita,reporte_concurrencia_clinica
 from .forms import recetaOffForm
 from datetime import datetime, timedelta, date
 

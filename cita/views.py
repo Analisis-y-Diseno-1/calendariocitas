@@ -8,6 +8,9 @@ from .forms import RecetaForm
 from datetime import datetime 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
+from django.views.generic import View
+from django.template.loader import get_template
+from .utils import render_to_pdf 
 
 def appointment_update(request, pk):
     query = request.POST
@@ -157,3 +160,14 @@ def modificar_receta(request,id):
             form.save()
         return redirect('recetas')
     return render(request,'citas/crear_receta_off.html', {'form': form})
+
+
+class reporte_concurrencia_clinica(View):
+    def get(self, request, *args, **kwargs):
+        template =  get_template('citas/concurrencia.html')
+        data = {
+             'Citas':Cita.objects.all(),
+             'Total':Cita.objects.count()
+        }
+        pdf = render_to_pdf('citas/concurrencia.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')

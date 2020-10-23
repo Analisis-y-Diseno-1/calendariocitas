@@ -9,7 +9,7 @@ from .views import AppointmentCreate
 from .views import SearchResultsListView
 from .views import RecetasListView, RecetasDetailView
 from .views import AppointmentUpdateView
-from cita.views import appointment_update
+from cita.views import appointment_update, reporte_concurrencia_clinica
 from examen.views import *
 
 urlpatterns = [
@@ -56,4 +56,5 @@ urlpatterns = [
     # REPORTES historial clinico
     path('historial_clinico/', reporte_historial_clinico.as_view(), name='reporte_historial_clinico'),  
     path('historial_clinicoPaciente/<id>', reporte_historial_clinicoPaciente, name='reporte_historial_clinicoPaciente'),
+    path('concurrencia_citas/', reporte_concurrencia_clinica.as_view(), name='reporte_concurrencia_clinica'),
 ]

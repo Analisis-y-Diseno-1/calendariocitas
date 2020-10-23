@@ -181,3 +181,16 @@ class ModificarReceta(TestCase):
         self.assertEqual(getreceta.cita, cita)
 
 
+class CitasHistory(TestCase):
+    def test_Dias_Concurridos_View(self):
+        view = resolve('/concurrencia_citas/')
+        self.assertEqual(
+            view.func.__name__,
+            reporte_concurrencia_clinica.__name__
+        )
+
+    def test_Dias_Concurridos_satus(self):
+        response = self.client.get(reverse('reporte_concurrencia_clinica'))
+        self.assertEqual(response.status_code,200)
+
+

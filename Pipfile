@@ -16,6 +16,7 @@ xhtml2pdf = "*"
 django-scheduler = "*"
 celery = "*"
 apscheduler = "*"
+twilio = "*"
 
 [requires]
 python_version = "3.8"

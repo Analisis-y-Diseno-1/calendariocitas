@@ -93,3 +93,10 @@ def reporte_historial_clinicoPaciente(request,id):
     }
     pdf = render_to_pdf('paciente/reporte_paciente.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
+
+
+def g_get_labels(val):
+    if val == 0:
+        return ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+    else:
+        return ["ERROR"]

@@ -16,7 +16,8 @@ from random import randint
 # Test sms notification
 
 class SmsTest(TestCase):
-    
+    ''' Prueba el formato correcto para el envio de el mensaje de
+    texto, las pruebas pasan luego de aplicar la conexion a twilio'''
     def setUp(self):
         self.citas = Cita.objects.all()
 

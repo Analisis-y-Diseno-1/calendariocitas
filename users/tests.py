@@ -124,3 +124,10 @@ class PatientHistoryPaciente(TestCase):
         response = self.client.get('/historial_clinicoPaciente/{0}'.format(paciente.pk))
         #response = self.client.get('/modificar_pasajero/{0}'.format(pasajero.pk))
         self.assertEqual(response.status_code,200)
+
+
+class GraphicReport(TestCase):
+    def test_general_graphic_report(self):
+        dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+        self.assertEquals(g_get_labels(0), dias)
+        

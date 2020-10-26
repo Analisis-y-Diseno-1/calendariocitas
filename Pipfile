@@ -13,6 +13,9 @@ django-crispy-forms = "*"
 behave-django = "*"
 reportlab = "*"
 xhtml2pdf = "*"
+django-scheduler = "*"
+celery = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.8"

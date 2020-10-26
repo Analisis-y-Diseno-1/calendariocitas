@@ -7,14 +7,26 @@ from django.urls import reverse, resolve
 from .views import Cita
 from .forms import recetaOffForm
 from datetime import datetime, timedelta, date
+from django.core import mail
+
+
+class EmailTest(TestCase):
+    
+    def test_send_email(self):
+        mail.send_mail('Subject here', 'Here is the message.',
+            'from@example.com', ['to@example.com'],
+            fail_silently=False)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, 'Subject here')
 
 
 
+'''
 class test_url_receta_off(SimpleTestCase):
 
     def test_ingresar_pasajero(self):
         response = self.client.get('/ingresar_receta_off/')
-        self.assertNotEqual(response.status_code, 404)
+        self.assertNotEqual(response.status_code, 404)'''
 
 class test_isValidForm(TestCase):
     data={

@@ -8,6 +8,28 @@ from .views import Cita
 from .forms import recetaOffForm
 from datetime import datetime, timedelta, date
 from django.core import mail
+from random import seed
+from random import randint
+# seed random number generator
+
+
+# Test sms notification
+
+class SmsTest(TestCase):
+    
+    def setUp(self):
+        self.citas = Cita.objects.all()
+
+    def hay_citas_en_el_sistema(self):
+        self.assertTrue(len(self.citas)>0)
+    
+    def pacientes_tienen_numero_telefonico(self):
+        seed(1)
+        self.assertRegex(self.citas(range(len(self.citas))), r'[0-9]+')
+
+    def numero_tiene_formato_correcto_guatemala(self):
+        self.assertEqual(len(self.citas(range(len(self.citas)))), 8)
+        
 
 
 class EmailTest(TestCase):

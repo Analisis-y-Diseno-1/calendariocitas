@@ -8,3 +8,5 @@ Se agrregó el CRUD de recetas y algunas funciones de citas. Así como también 
 Resolviendo hotfix de funcion Buscar cita por fecha.
 #Version 4.0.0
 Se agreó toda la funcionalidad de recetas y exámenes clínicos.
+#Version 4.1.0
+Agregando detalles de los recordatorios de sms y reportes gráficos

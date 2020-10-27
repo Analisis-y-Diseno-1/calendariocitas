@@ -8,6 +8,10 @@ from django.http import HttpResponse
 from django.views.generic import View
 from django.template.loader import get_template
 from .utils import render_to_pdf 
+import datetime
+
+from django.views.generic import TemplateView
+from chartjs.views.lines import BaseLineChartView
 
 # Create your views here.
 # def listado_pacientes(request):
@@ -100,3 +104,53 @@ def g_get_labels(val):
         return ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
     else:
         return ["ERROR"]
+
+def g_get_data(val):
+    citas = Cita.objects.all()
+    cantidad_citas = len(citas)
+    if val == 0:
+        dias = [0,0,0,0,0,0,0]
+        dicdias = {'MONDAY':'Lunes','TUESDAY':'Martes','WEDNESDAY':'Miercoles','THURSDAY':'Jueves', \
+        'FRIDAY':'Viernes','SATURDAY':'Sabado','SUNDAY':'Domingo'}
+
+        for i in range(cantidad_citas):
+            anho = citas[i].fecha_cita.year
+            mes =  citas[i].fecha_cita.month
+            dia= citas[i].fecha_cita.day
+            fecha = datetime.date(anho, mes, dia)
+
+            #dias[i] = dicdias[fecha.strftime('%A').upper()]
+            if dicdias[fecha.strftime('%A').upper()] == "Lunes":
+                dias[0] = dias[0] + 1
+            elif dicdias[fecha.strftime('%A').upper()] == "Martes":
+                dias[1] = dias[1] + 1
+            elif dicdias[fecha.strftime('%A').upper()] == "Miercoles":
+                dias[2] = dias[2] + 1
+            elif dicdias[fecha.strftime('%A').upper()] == "Jueves":
+                dias[3] = dias[3] + 1
+            elif dicdias[fecha.strftime('%A').upper()] == "Viernes":
+                dias[4] = dias[4] + 1
+            elif dicdias[fecha.strftime('%A').upper()] == "Sabado":
+                dias[5] = dias[5] + 1
+            else:
+                dias[6] = dias[6] + 1
+
+        print(dias)
+        return [dias]
+    return 0
+
+
+class LineChartJSONView(BaseLineChartView):
+    def get_labels(self):
+        return g_get_labels(0)
+        #return ["January", "February", "March", "April", "May", "June", "July"]
+
+    def get_providers(self):
+        return ["Total de citas"]
+
+    def get_data(self):
+        return g_get_data(0)
+
+
+line_chart = TemplateView.as_view(template_name='users/graphic.html')
+line_chart_json = LineChartJSONView.as_view()

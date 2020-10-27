@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 from django.contrib.auth import get_user_model
 from users.models import Paciente
 from datetime import datetime
-from .views import reporte_historial_clinico, g_get_labels
+from .views import *
 
 class CustomUserTests(TestCase):
 
@@ -133,4 +133,5 @@ class GraphicReport(TestCase):
         
     def test_general_logic_graphic_report(self):
         dias = [0,0,0,0,0,0,0]
-        self.assertEquals(g_get_data(0), dias)
+        self.assertEquals(g_get_data(0), [dias])
+        self.assertEquals(g_get_data(9), 0)

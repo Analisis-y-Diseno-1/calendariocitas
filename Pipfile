@@ -17,6 +17,7 @@ django-scheduler = "*"
 celery = "*"
 apscheduler = "*"
 django-matplotlib = "*"
+django-chartjs = "*"
 
 [requires]
 python_version = "3.8"

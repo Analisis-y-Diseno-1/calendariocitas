@@ -131,3 +131,6 @@ class GraphicReport(TestCase):
         dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
         self.assertEquals(g_get_labels(0), dias)
         
+    def test_general_logic_graphic_report(self):
+        dias = [0,0,0,0,0,0,0]
+        self.assertEquals(g_get_data(0), dias)

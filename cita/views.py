@@ -168,15 +168,19 @@ class reporte_concurrencia_clinica(View):
         template =  get_template('citas/concurrencia.html')
         print(Cita.objects.all().annotate(total=Count('estado')).order_by('-total').count())
         print(Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total').count())
+        div=Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total').count()
+        prom=0
+        if div!=0:
+            prom=Cita.objects.all().annotate(total=Count('estado')).order_by('-total').count()/ div
         data = {
              'Citas':Cita.objects.all(),
              'Total':Cita.objects.count(),
-             'Fecha_concurrido':Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total')[0],
+             'Fecha_concurrido':Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total')[:1],
              'Citas_atendidas': Cita.objects.filter(estado='ATENDIDA').annotate(total=Count('estado')).order_by('-total').count(),
              'Citas_pendientes': Cita.objects.filter(estado='PENDIENTE').annotate(total=Count('estado')).order_by('-total').count() ,
              'Citas_canceladas' : Cita.objects.filter(estado='CANCELADA').annotate(total=Count('estado')).order_by('-total').count(),
-             'Promedio_citas' :Cita.objects.all().annotate(total=Count('estado')).order_by('-total').count()/ Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total').count(),
-             'Menos_concurrido':Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('total')[0],
+             'Promedio_citas' :prom,
+             'Menos_concurrido':Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('total')[:1],
         }
         pdf = render_to_pdf('citas/concurrencia.html', data)
         return HttpResponse(pdf, content_type='application/pdf')

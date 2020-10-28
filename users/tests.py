@@ -3,7 +3,7 @@ from django.urls import reverse, resolve
 from django.contrib.auth import get_user_model
 from users.models import Paciente
 from datetime import datetime
-from .views import reporte_historial_clinico
+from .views import *
 
 class CustomUserTests(TestCase):
 
@@ -124,3 +124,14 @@ class PatientHistoryPaciente(TestCase):
         response = self.client.get('/historial_clinicoPaciente/{0}'.format(paciente.pk))
         #response = self.client.get('/modificar_pasajero/{0}'.format(pasajero.pk))
         self.assertEqual(response.status_code,200)
+
+
+class GraphicReport(TestCase):
+    def test_general_graphic_report(self):
+        dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+        self.assertEquals(g_get_labels(0), dias)
+        
+    def test_general_logic_graphic_report(self):
+        dias = [0,0,0,0,0,0,0]
+        self.assertEquals(g_get_data(0), [dias])
+        self.assertEquals(g_get_data(9), 0)

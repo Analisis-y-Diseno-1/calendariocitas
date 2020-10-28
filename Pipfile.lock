@@ -1,11 +1,7 @@
 {
     "_meta": {
         "hash": {
-<<<<<<< HEAD
-            "sha256": "ef718e7d29a039df4cb041efc9229d374005645295136851277a04abc5ee677a"
-=======
             "sha256": "a11794ec27c94ea13cbc8fbaa62f276a0c778e1bbd095f688940123022dd496f"
->>>>>>> feature/smsnotify
         },
         "pipfile-spec": 6,
         "requires": {

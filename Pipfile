@@ -16,8 +16,12 @@ xhtml2pdf = "*"
 django-scheduler = "*"
 celery = "*"
 apscheduler = "*"
+<<<<<<< HEAD
 django-matplotlib = "*"
 django-chartjs = "*"
+=======
+twilio = "*"
+>>>>>>> feature/smsnotify
 
 [requires]
 python_version = "3.8"

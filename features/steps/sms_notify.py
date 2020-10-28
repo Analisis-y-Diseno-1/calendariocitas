@@ -5,7 +5,14 @@ from cita.models import Cita
 from examen.models import Examen
 from datetime import datetime, timedelta, date
 
-@given('Existen citas creadas')
+from twilio.rest import Client
+
+account_sid = 'AC28c195212f1f17e9d15c8c510a536565'
+auth_token = 'ba4135215f92ff3c5a1c6a1eb59168a5'
+client = Client(account_sid, auth_token)
+
+
+@given('Existen citas creadas en el sistema')
 def step_impl(context):
     #ponemos el sistema en un estado inicial.
     #Ingresamos Citas en la BD
@@ -27,18 +34,14 @@ def step_impl(context):
     Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()  
     pass
 
-@when('Exista una cita para el dia siguiente')
+@when('Exista una cita agendada para el dia siguiente')
 def step_impl(context):
     tomorrow = date.today() + timedelta(days=1)
     appointments = Cita.objects.filter(fecha_cita=tomorrow)
-<<<<<<< HEAD
-    assert len(Examen.objects.all())>0
-=======
     assert len(Cita.objects.all())>0
->>>>>>> feature/smsnotify
 
 
-@then('Se envia un correo electronico al paciente')
+@then('Se envia un sms al paciente')
 def step_impl(context):
     #Se observan los resultados
     tomorrow = date.today() + timedelta(days=1)
@@ -46,7 +49,13 @@ def step_impl(context):
 
     for cita in appointments:
         if cita.paciente.correo.find('@'):
-            mail.send_mail('Subject here', 'Here is the message.',
-                'from@example.com', ['to@example.com'],
-                fail_silently=False)
-            assert len(mail.outbox) == 1
+            message = client.messages.create(
+                     body="No olvides tu cita en alfa medic, te esperamos!.",
+                     from_='+15017122661',
+                     to='+50240886635'
+                 )
+            assert len(message.sid) > 0
+
+
+
+

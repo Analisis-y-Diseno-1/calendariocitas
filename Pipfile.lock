@@ -1,7 +1,11 @@
 {
     "_meta": {
         "hash": {
+<<<<<<< HEAD
             "sha256": "ef718e7d29a039df4cb041efc9229d374005645295136851277a04abc5ee677a"
+=======
+            "sha256": "a11794ec27c94ea13cbc8fbaa62f276a0c778e1bbd095f688940123022dd496f"
+>>>>>>> feature/smsnotify
         },
         "pipfile-spec": 6,
         "requires": {
@@ -502,6 +506,13 @@
                 "sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8"
             ],
             "version": "==0.4.1"
+        },
+        "twilio": {
+            "hashes": [
+                "sha256:9d591617b22e75b26cda11a10d353e2001d990a7ca1696d92e50abfc6ecdcb73"
+            ],
+            "index": "pypi",
+            "version": "==6.46.0"
         },
         "tzlocal": {
             "hashes": [

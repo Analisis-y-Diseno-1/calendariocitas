@@ -2,7 +2,7 @@ from behave import *
 from users.models import Paciente
 from cita.models import Cita, Receta
 from datetime import datetime, timedelta, date
-
+'''
 @given('Existen citas creadas')
 def step_impl(context):
     #ponemos el sistema en un estado inicial.
@@ -23,7 +23,7 @@ def step_impl(context):
     hora = datetime.now().strftime("%H:%M:%S")
     Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()  
     pass
-
+'''
 @when('Cuando se pulse el boton agregar receta')
 def step_impl(context):
     cita= Cita.objects.all()[0]

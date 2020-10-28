@@ -10,3 +10,5 @@ Resolviendo hotfix de funcion Buscar cita por fecha.
 Se agreó toda la funcionalidad de recetas y exámenes clínicos.
 #Version 4.1.0
 Agregando detalles de los recordatorios de sms y reportes gráficos
+#Version 4.2.0
+Se agregó el controlador para el reporte gráfico.

@@ -18,9 +18,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     {% block css %}
     {% endblock css %}
-    {% comment %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    {% endcomment %}
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
   </head>
   <body style="background-color: #1abc9c;">
     <header>
@@ -35,8 +33,8 @@
           
           <a class="text-white" href="{% url 'home' %}">About</a>
           {% if user.is_authenticated %}
-            <a class="p-2 text-light" href="{% url 'citas' %}">Citas del dia</a>
-            <a class="p-2 mb-2 bg-dark text-white" href="{% url 'recetas' %}">Recetas</a>
+            <a class="p-2 text-white" href="{% url 'citas' %}">Citas del dia</a>
+            <a class="p-2 text-white" href="{% url 'recetas' %}">Recetas</a>
             <a class="p-2 text-white" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}
             <a class="p-2 text-white" href="{% url 'account_login' %}">Log In</a>
@@ -78,8 +76,9 @@
     {% block js %}
     {% endblock js %}
   </body>
+  
   <!-- Footer -->
-  <footer style="padding-top: 50px; padding-bottom: 40px; background-color: #2f2f2f;" class="container-fluid bg-4 text-center">
+  <footer style="bottom: 0; padding-top: 50px; padding-bottom: 40px; background-color: #2f2f2f;" class="container-fluid bg-4 text-center" >
     <p style="font: 400 15px Lato, sans-serif; font-size: 15px; color: white;">Analisis y Diseño 1</p>
     <p style="font: 400 15px Lato, sans-serif; font-size: 15px; color: white;">Medical WebService</p>
   </footer>

@@ -31,11 +31,7 @@ def step_impl(context):
 def step_impl(context):
     tomorrow = date.today() + timedelta(days=1)
     appointments = Cita.objects.filter(fecha_cita=tomorrow)
-<<<<<<< HEAD
-    assert len(Examen.objects.all())>0
-=======
     assert len(Cita.objects.all())>0
->>>>>>> feature/smsnotify
 
 
 @then('Se envia un correo electronico al paciente')

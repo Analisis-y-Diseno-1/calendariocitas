@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'schedule',
+    'django_matplotlib',
+    'chartjs',
 
     # Local apps
     #'users.apps.UsersConfig',

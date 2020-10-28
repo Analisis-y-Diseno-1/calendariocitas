@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/citas.css' %}" />
 {% endblock css %}
 {% block content %} 
+<<<<<<< HEAD
 <!-- First Container  -->
 <div style="background-color: 1abc9c;" class="container-fluid bg-1 text-center">
     <br>
@@ -60,6 +61,31 @@
                             <form action="{% url 'ExaminationListView' %}">
                                 <button type="submit" class="btn btn-outline-info">Ver Examenes</button>
                             </form>
+=======
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                {% comment %} <a href="{%url 'crear_cita' pk=1 %}" class="btn btn-success">Agendar cita</a> {% endcomment %}
+                <a href="{%url 'citas' %}" class="btn btn-info">Ver citas</a>
+                <a href="{% url 'ExaminationListView' %}" class="btn btn-info">Ver Examenes</a>
+                <a href="{% url 'reporte_historial_clinico' %}" class="btn btn-info">Archivo Clinico</a>
+                <a href="{% url 'reporte_concurrencia_clinica' %}" class="btn btn-info">Reporte Concurrencia</a>
+                <a href="#" class="tool" onclick="OpenModal()">Agendar nueva cita</a>
+            </div>
+        </div>
+    </div>
+    <div class="calendar">
+        <h4>
+            <label for="searchCalendar">¿Consultar una fecha?</label>
+        </h4>
+        <form class="form-inline mt-2 mt-md-0" action="#"
+            method="get">
+            <input name="q" class="form-control mr-sm-2" type="date" placeholder="Search"
+            aria-label="Search" id="searchCalendar">
+            <button type="submit" class="btn btn-primary btn-block mb-5">Buscar</button>
+        </form>
+    </div>
+>>>>>>> bcda12cbb5aa47b774f9832fbb9295b81f41d7d7
 
                         </div>
                     </div>

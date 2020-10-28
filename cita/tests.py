@@ -4,10 +4,33 @@ from datetime import datetime, timedelta, date
 from users.models import Paciente
 from cita.models import Cita
 from django.urls import reverse, resolve
-from .views import Cita
+from .views import Cita,reporte_concurrencia_clinica
 from .forms import recetaOffForm
 from datetime import datetime, timedelta, date
 from django.core import mail
+from random import seed
+from random import randint
+# seed random number generator
+
+
+# Test sms notification
+
+class SmsTest(TestCase):
+    ''' Prueba el formato correcto para el envio de el mensaje de
+    texto, las pruebas pasan luego de aplicar la conexion a twilio'''
+    def setUp(self):
+        self.citas = Cita.objects.all()
+
+    def hay_citas_en_el_sistema(self):
+        self.assertTrue(len(self.citas)>0)
+    
+    def pacientes_tienen_numero_telefonico(self):
+        seed(1)
+        self.assertRegex(self.citas(range(len(self.citas))), r'[0-9]+')
+
+    def numero_tiene_formato_correcto_guatemala(self):
+        self.assertEqual(len(self.citas(range(len(self.citas)))), 8)
+        
 
 
 class EmailTest(TestCase):
@@ -191,5 +214,18 @@ class ModificarReceta(TestCase):
 
         self.assertEqual(getreceta.detalle_receta,'Edicion')
         self.assertEqual(getreceta.cita, cita)
+
+
+class CitasHistory(TestCase):
+    def test_Dias_Concurridos_View(self):
+        view = resolve('/concurrencia_citas/')
+        self.assertEqual(
+            view.func.__name__,
+            reporte_concurrencia_clinica.__name__
+        )
+
+    def test_Dias_Concurridos_satus(self):
+        response = self.client.get(reverse('reporte_concurrencia_clinica'))
+        self.assertEqual(response.status_code,200)
 
 

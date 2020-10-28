@@ -8,6 +8,10 @@ from .forms import RecetaForm
 from datetime import datetime 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.mail import send_mail
+from django.views.generic import View
+from django.template.loader import get_template
+from .utils import render_to_pdf 
+from django.db.models import Sum, Count
 
 def appointment_update(request, pk):
     query = request.POST
@@ -157,3 +161,26 @@ def modificar_receta(request,id):
             form.save()
         return redirect('recetas')
     return render(request,'citas/crear_receta_off.html', {'form': form})
+
+
+class reporte_concurrencia_clinica(View):
+    def get(self, request, *args, **kwargs):
+        template =  get_template('citas/concurrencia.html')
+        print(Cita.objects.all().annotate(total=Count('estado')).order_by('-total').count())
+        print(Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total').count())
+        div=Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total').count()
+        prom=0
+        if div!=0:
+            prom=Cita.objects.all().annotate(total=Count('estado')).order_by('-total').count()/ div
+        data = {
+             'Citas':Cita.objects.all(),
+             'Total':Cita.objects.count(),
+             'Fecha_concurrido':Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('-total')[:1],
+             'Citas_atendidas': Cita.objects.filter(estado='ATENDIDA').annotate(total=Count('estado')).order_by('-total').count(),
+             'Citas_pendientes': Cita.objects.filter(estado='PENDIENTE').annotate(total=Count('estado')).order_by('-total').count() ,
+             'Citas_canceladas' : Cita.objects.filter(estado='CANCELADA').annotate(total=Count('estado')).order_by('-total').count(),
+             'Promedio_citas' :prom,
+             'Menos_concurrido':Cita.objects.all().values('fecha_cita').annotate(total=Count('fecha_cita')).order_by('total')[:1],
+        }
+        pdf = render_to_pdf('citas/concurrencia.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')

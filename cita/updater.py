@@ -3,7 +3,8 @@ from cita.update import update_somthing, sms_remminder
 
 from apscheduler.triggers.cron import CronTrigger
 trigger = CronTrigger(hour='12', minute='00')
-trigger2 = CronTrigger(hour='6', minute='15')
+
+trigger2 = CronTrigger(hour='6', minute='15')0
 
 def start():
     scheduler = BackgroundScheduler()

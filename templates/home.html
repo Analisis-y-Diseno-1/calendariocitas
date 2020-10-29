@@ -9,8 +9,9 @@
 <div style="background-color: 1abc9c;" class="container-fluid bg-1 text-center">
     <br>
     <br>
-    <img src="{% static 'care.PNG' %}" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
-    <p style="font-size: 100px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Medical Website</p>
+    <img src="{% static 'care.png' %}" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+    <p style="font-size: 100px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Alpha Medic</p>
+    <p style="font-size: 50px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Medical Website</p>
     <br>
 </div>
 
@@ -39,7 +40,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Citas En Proceso</h5>
-                            <img src="{% static 'icon6.PNG' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <img src="{% static 'icon6.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
                             <br><br>
                          
                             <form action="{% url 'citas' %}">
@@ -54,7 +55,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Consulta De Examenes</h5>
-                            <img src="{% static 'icon1.PNG' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <img src="{% static 'icon1.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
                             <br><br>
 
                             <form action="{% url 'ExaminationListView' %}">
@@ -68,11 +69,26 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Consultar Historial Clinico</h5>
-                            <img src="{% static 'icon6.PNG' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <img src="{% static 'icon6.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
                             <br><br>
 
                             <form action="{% url 'reporte_historial_clinico' %}">
                                 <button type="submit" class="btn btn-outline-info">Archivo Clinico</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-3">
+                
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultar Reportes Gráficos</h5>
+                            <img src="{% static 'icon55.png' %}" class="img-responsive margin" style="width:100%" alt="Image">
+                            <br><br>
+                            <form action="{% url 'chart' %}">
+                                <button type="submit" class="btn btn-outline-info">Días concurridos</button>
                             </form>
 
                         </div>
@@ -84,7 +100,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">¿Consultar una fecha?</h5>
-                            <img src="{% static 'icon5.PNG' %}" class="img-responsive margin" style="width:90%" alt="Image">
+                            <img src="{% static 'icon5.png' %}" class="img-responsive margin" style="width:90%" alt="Image">
                             <br><br><br>
                             <form class="form-inline mt-2 mt-md-0" action="#"
                                 method="get">

@@ -136,6 +136,11 @@ class GraphicReport(TestCase):
         self.assertEquals(g_get_data(0), [dias])
         self.assertEquals(g_get_data(9), 0)
 
-    def test_general_graphic_report(self):
+    def test_general_graphic_report2(self):
         meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
         self.assertEquals(g_get_labels(1), meses)
+        
+    def test_general_logic_graphic_report2(self):
+        meses = [0,0,0,0,0,0,0,0,0,0,0,0]
+        self.assertEquals(g_get_data(1), [meses])
+        self.assertEquals(g_get_data(9), 0)

@@ -102,6 +102,8 @@ def reporte_historial_clinicoPaciente(request,id):
 def g_get_labels(val):
     if val == 0:
         return ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+    elif val == 1:
+        return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
     else:
         return ["ERROR"]
 

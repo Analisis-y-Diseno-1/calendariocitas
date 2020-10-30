@@ -203,5 +203,5 @@ class LineChartMonthJSONView(BaseLineChartView):
 
 line_chart = TemplateView.as_view(template_name='users/graphic.html')
 line_chart_json = LineChartJSONView.as_view()
-#line_chart_month = TemplateView.as_view(template_name='users/graphic2.html')
-#line_chart_month_json = LineChartMonthJSONView.as_view()
+line_chart_month = TemplateView.as_view(template_name='users/graphic2.html')
+line_chart_month_json = LineChartMonthJSONView.as_view()

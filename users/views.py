@@ -102,6 +102,8 @@ def reporte_historial_clinicoPaciente(request,id):
 def g_get_labels(val):
     if val == 0:
         return ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+    elif val == 1:
+        return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
     else:
         return ["ERROR"]
 
@@ -137,6 +139,42 @@ def g_get_data(val):
 
         print(dias)
         return [dias]
+    elif val == 1:
+        meses = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+        for i in range(cantidad_citas):
+            anho = citas[i].fecha_cita.year
+            mes =  citas[i].fecha_cita.month
+            dia= citas[i].fecha_cita.day
+            fecha = datetime.date(anho, mes, dia)
+
+            if mes == 1:
+                meses[0] = meses[0] + 1
+            elif mes == 2:
+                meses[1] = meses[1] + 1
+            elif mes == 3:
+                meses[2] = meses[2] + 1
+            elif mes == 4:
+                meses[3] = meses[3] + 1
+            elif mes == 5:
+                meses[4] = meses[4] + 1
+            elif mes == 6:
+                meses[5] = meses[5] + 1
+            elif mes == 7:
+                meses[6] = meses[6] + 1
+            elif mes == 8:
+                meses[7] = meses[7] + 1
+            elif mes == 9:
+                meses[8] = meses[8] + 1
+            elif mes == 10:
+                meses[9] = meses[9] + 1
+            elif mes == 11:
+                meses[10] = meses[10] + 1
+            elif mes == 12:
+                meses[11] = meses[11] + 1
+
+        print(meses)
+        return [meses]
     return 0
 
 
@@ -151,6 +189,19 @@ class LineChartJSONView(BaseLineChartView):
     def get_data(self):
         return g_get_data(0)
 
+class LineChartMonthJSONView(BaseLineChartView):
+    def get_labels(self):
+        return g_get_labels(1)
+        #return ["January", "February", "March", "April", "May", "June", "July"]
+
+    def get_providers(self):
+        return ["Total de citas"]
+
+    def get_data(self):
+        return g_get_data(1)
+
 
 line_chart = TemplateView.as_view(template_name='users/graphic.html')
 line_chart_json = LineChartJSONView.as_view()
+line_chart_month = TemplateView.as_view(template_name='users/graphic2.html')
+line_chart_month_json = LineChartMonthJSONView.as_view()

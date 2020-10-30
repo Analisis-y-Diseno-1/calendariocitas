@@ -1,6 +1,6 @@
 from django.urls import path
 from anotacion.views import crear_anotacion,modificar_anotacion,listado_anotaciones, eliminar_anotacion, annotationCreate
-from users.views import listado_pacientes,modificar_paciente, ingresar_paciente, detalle_paciente,reporte_historial_clinico, reporte_historial_clinicoPaciente, line_chart, line_chart_json
+from users.views import *
 from cita.views import appointment_create, appointment_update,appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off,eliminar_receta, modificar_receta
 from cita.views import appointment_create, appointment_delete,appointment_serve, RecetaCreate,ingresar_receta_off,eliminar_receta, modificar_receta
 from .views import HomePageView, AppointmentsListView, AppointmentDetailView
@@ -60,4 +60,6 @@ urlpatterns = [
      # REPORTES GRAFICOS
     path('chart', line_chart, name='chart'),
     path('chartJSON', line_chart_json, name='line_chart_json'),
+    path('chartMonth', line_chart_month, name='chartMonth'),
+    path('chartMonthJSON', line_chart_month_json, name='line_chart_month_json'),
 ]

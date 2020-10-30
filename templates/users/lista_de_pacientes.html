@@ -23,7 +23,7 @@
 			<td>{{pacient.telefono_emergencia}}</td>
 			<td>{{pacient.correo}}</td>
 			<td>
-				<a href="{{ pacient.get_absolute_url }}" class="btn btn-secondary "> Ver Paciente </a>
+				<a href="{% url 'detalle_paciente' pacient.correo %}" class="btn btn-secondary "> Ver Paciente </a>
         <a href="{% url 'crear_cita' pk=pacient.pk name=pacient.nombre %}" class="btn btn-outline-success" onClick="saveIdOfPacient({{pacient.id}})">Crear cita</a>
 			</td>
 		</tr>

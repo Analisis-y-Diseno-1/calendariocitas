@@ -3,7 +3,7 @@ from cita.models import Cita
 from datetime import datetime, timedelta, date
 from users.views import g_get_data, g_get_labels
 
-@given('Se han atendido citas')
+@given('Se han atendido citass')
 def step_impl(context):
     paciente=Paciente.objects.create(
         nombre = 'Henry',
@@ -24,19 +24,18 @@ def step_impl(context):
     
     
 
-@when('Cuando se pulse el boton generar reporte de dias concurridos')
+@when('Cuando se pulse el boton generar reporte de meses concurridos')
 def step_impl(context):
-    dias = [0,0,0,0,0,0,0]
-        #self.assertEquals(g_get_data(0), [dias])
-    assert [dias] != g_get_data(0)
+    dias = [0,0,0,0,0,0,0,0,0,0,0,0]
+    assert [dias] != g_get_data(1)
     #assert 1 == 1
       
     
 
-@then('Se visualiza reporte grafico')
+@then('Se visualiza el reporte grafico')
 def step_impl(context):
-    dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
-    assert g_get_labels(0) == dias
+    meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+    assert g_get_labels(1) == meses
     #assert 1 == 1
     
     

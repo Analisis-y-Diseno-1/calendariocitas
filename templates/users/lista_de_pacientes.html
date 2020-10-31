@@ -11,19 +11,20 @@
 	  <th>Telefono</th>
 	  <th>Telefono emegencia</th>
       <th>Email</th>
+      <th>Acciones</th>
     </tr>
   </thead>
 
   <tbody>
 	{% for pacient in pacients %}
 		<tr>
-			<td>{{pacient.nombre}}</td>
+			<td> <a href="{% url 'detalle_paciente' pacient.correo %}">{{pacient.nombre}}</a> </td>
 			<td>{{pacient.apellido}}</td>
 			<td>{{pacient.telefono}}</td>
 			<td>{{pacient.telefono_emergencia}}</td>
-			<td>{{pacient.correo}}</td>
+      <td>{{pacient.correo}}</td>
 			<td>
-				<a href="{{ pacient.get_absolute_url }}" class="btn btn-secondary "> Ver Paciente </a>
+				<a href="{% url 'detalle_paciente' pacient.correo %}" class="btn btn-secondary "> Ver Paciente </a>
         <a href="{% url 'crear_cita' pk=pacient.pk name=pacient.nombre %}" class="btn btn-outline-success" onClick="saveIdOfPacient({{pacient.id}})">Crear cita</a>
 			</td>
 		</tr>

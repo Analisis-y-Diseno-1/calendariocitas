@@ -12,3 +12,5 @@ Se agreó toda la funcionalidad de recetas y exámenes clínicos.
 Agregando detalles de los recordatorios de sms y reportes gráficos
 #Version 4.2.0
 Se agregó el controlador para el reporte gráfico.
+#Version 5.0.0
+Se lograron terminar las historias restantes

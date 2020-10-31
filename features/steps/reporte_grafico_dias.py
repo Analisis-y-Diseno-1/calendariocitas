@@ -1,4 +1,3 @@
-from behave import *
 from users.models import Paciente
 from cita.models import Cita
 from datetime import datetime, timedelta, date

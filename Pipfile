@@ -18,6 +18,7 @@ celery = "*"
 apscheduler = "*"
 django-matplotlib = "*"
 django-chartjs = "*"
+twilio = "*"
 
 [requires]
 python_version = "3.8"

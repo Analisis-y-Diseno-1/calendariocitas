@@ -18,36 +18,30 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     {% block css %}
     {% endblock css %}
-    {% comment %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    {% endcomment %}
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
   </head>
-  <body>
+  <body style="background-color: #1abc9c;">
     <header>
-      <!-- Fixed navbar -->
-      <div
-        class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
-      >
-        <a
-          href="{% url 'home' %}"
-          class="navbar-brand my-0 mr-md-auto font-weight-normal"
-          >Medical website</a
-        >
-        <nav class="my-2 my-md-0 mr-md-3">
-          <a class="p-2 text-dark" href="{% url 'home' %}">About</a>
+
+      <!-- Navbar-->
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'medical.png' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+          Alfa-Medic
+        </a>
+        <form class="form-inline" action="{% url 'search_by_name' %}" method="get">
+          
+          
           {% if user.is_authenticated %}
-          <a class="p-2 text-dark" href="{% url 'citas' %}">Citas del dia</a>
-          <a class="p-2 text-dark" href="{% url 'recetas' %}">Recetas</a>
-          <a class="p-2 text-dark" href="{% url 'account_logout' %}">Log Out</a>
+          <a class="text-white" href="{% url 'listado_pacientes' %}">Listado de Pacientes</a>
+            <a class="p-2 text-white" href="{% url 'citas' %}">Buscar Citas</a>
+            <a class="p-2 text-white" href="{% url 'recetas' %}">Recetas</a>
+            <a class="p-2 text-white" href="{% url 'account_logout' %}">Log Out</a>
           {% else %}
-          <a class="p-2 text-dark" href="{% url 'account_login' %}">Log In</a>
-          <a class="btn btn-outline-primary" href="{% url 'account_signup' %}"
-            >Sign Up</a
-          >
+            <a class="p-2 text-white" href="{% url 'account_login' %}">Log In</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'account_signup' %}">Sign Up</a>
           {% endif %}
-        </nav>
-          <form action="{% url 'search_by_name' %}" method="get" class="form-inline my-2 my-lg-0 pr-4">
-            <div class="form-group">
+          <div class="form-group">
             <label for="searchCalendar">
             <i class="fa fa-search pr-2"></i>
             </label>
@@ -55,9 +49,13 @@
                     aria-label="Buscar" id="searchCalendar">
             </div>
         </form>
-      </div>
+      </nav>
     </header>
-    <div class="container">{% block content %} {% endblock content %}</div>
+    
+    
+    {% block content %} {% endblock content %}
+
+    
     <!-- JavaScript -->
     <!-- JS, Popper.js, and jQuery -->
     <script
@@ -79,4 +77,10 @@
     {% block js %}
     {% endblock js %}
   </body>
+  
+  <!-- Footer -->
+  <footer style="bottom: 0; padding-top: 50px; padding-bottom: 40px; background-color: #2f2f2f;" class="container-fluid bg-4 text-center" >
+    <p style="font: 400 15px Lato, sans-serif; font-size: 15px; color: white;">Analisis y Diseño 1</p>
+    <p style="font: 400 15px Lato, sans-serif; font-size: 15px; color: white;">Alfa-Medic</p>
+  </footer>
 </html>

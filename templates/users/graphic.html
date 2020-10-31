@@ -5,7 +5,7 @@
     
 
  {% load static %}
-    <h1>¡Días concurridos!</h1>
+    <b><p style="text-align: center; font-size: 50px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">¡Días concurridos!</p></b>
 
     <canvas id="myChart" width="900" height="200"></canvas>
 
@@ -19,4 +19,7 @@
             });
         });
     </script>
+    <br><br>
+    <h1 style="text-align: center;"><a class="btn btn-danger" href="{% url 'home' %}"><b>VOLVER</b></a></h1>
+    <br>
  {% endblock  %}

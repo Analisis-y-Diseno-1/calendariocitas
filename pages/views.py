@@ -7,15 +7,17 @@ from cita.models import Cita, Receta
 from cita.forms import RecetaForm
 from users.models import Paciente
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
-class AppointmentsListView(ListView):
+class AppointmentsListView(LoginRequiredMixin,ListView):
     model = Cita
     context_object_name = 'cita_list'
     template_name = 'citas/lista_citas.html'
-    
+    login_url = '/notFound'
+
     def get_queryset(self):
         filter_val = self.request.GET.get('q', 'give-default-value')
         print(filter_val)
@@ -29,18 +31,21 @@ class AppointmentsListView(ListView):
             return new_context
 
 
-class RecetasListView(ListView):
+class RecetasListView(LoginRequiredMixin,ListView):
+    login_url = '/notFound'
     model = Receta
     context_object_name="recetas"
     template_name='recetas/lista_de_recetas.html'
 
 
-class RecetasDetailView(DetailView):
+class RecetasDetailView(LoginRequiredMixin,DetailView):
+    login_url = '/notFound'
     model = Receta
     context_object_name="receta"
     template_name='recetas/detalle_receta.html'
 
-class AppointmentDetailView(DetailView):
+class AppointmentDetailView(LoginRequiredMixin,DetailView):
+    login_url = '/notFound'
     model = Cita
     context_object_name = 'cita'
     template_name = 'citas/cita_detail.html'
@@ -59,7 +64,8 @@ class AppointmentDetailView(DetailView):
 
         return context
     
-class AppointmentUpdateView(DetailView):
+class AppointmentUpdateView(LoginRequiredMixin,DetailView):
+    login_url = '/notFound'
     model = Cita
     context_object_name = 'cita'
     template_name = 'citas/actualizar_cita.html'
@@ -73,8 +79,9 @@ class AppointmentCreate(TemplateView):
         context['name'] = kwargs['name']
         return context
 
-class SearchResultsListView(ListView):
+class SearchResultsListView(LoginRequiredMixin,ListView):
     ''' Resultados de busqueda '''
+    login_url = '/notFound'
     model = Paciente
     context_object_name = 'pacients'
     template_name = "search_result.html"

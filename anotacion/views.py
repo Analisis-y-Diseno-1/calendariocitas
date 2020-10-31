@@ -11,34 +11,47 @@ from datetime import datetime
 # Create your views here.
 
 def listado_anotaciones(request):
-    anotaciones=Anotacion.objects.all()
-    data={
-        'lista_anotaciones':anotaciones
-    }
-    return render(request, 'anotacion/listado_anotaciones.html',data)
+    if request.user.is_authenticated:
+        anotaciones=Anotacion.objects.all()
+        data={
+            'lista_anotaciones':anotaciones
+        }
+        return render(request, 'anotacion/listado_anotaciones.html',data)
+    else:
+        return redirect('notFound') 
+
 
 def modificar_anotacion(request,id):
-    anotacion=Anotacion.objects.get(no_anotacion=id) 
-    data = {
-        'form': CardAnotacion_form(instance=anotacion)
-    }
-    if request.method=="POST":
-        formulario=CardAnotacion_form(data=request.POST, instance=anotacion)
-        if formulario.is_valid():
-            formulario.save()
-            data['mensaje'] = "Anotacion modificada correctamente"
-            data['form'] = formulario
-    return render(request, 'anotacion/modificar_anotacion.html',data)
+    if request.user.is_authenticated:
+        anotacion=Anotacion.objects.get(no_anotacion=id) 
+        data = {
+            'form': CardAnotacion_form(instance=anotacion)
+        }
+        if request.method=="POST":
+            formulario=CardAnotacion_form(data=request.POST, instance=anotacion)
+            if formulario.is_valid():
+                formulario.save()
+                data['mensaje'] = "Anotacion modificada correctamente"
+                data['form'] = formulario
+        return render(request, 'anotacion/modificar_anotacion.html',data)
+    else:
+        return redirect('notFound')
 
 # Create your views here.
 def eliminar_anotacion(request,id):
-    anotacion = Anotacion.objects.get(no_anotacion=id)
-    anotacion.delete()
-    return redirect(to="listado_anotaciones")
+    if request.user.is_authenticated:
+        anotacion = Anotacion.objects.get(no_anotacion=id)
+        anotacion.delete()
+        return redirect(to="listado_anotaciones")
+    else:
+        return redirect('notFound')
+
 
 def crear_anotacion(request):
-    return render(request,'anotacion/index.html')
-
+    if request.user.is_authenticated:
+        return render(request,'anotacion/index.html')
+    else:
+        return redirect('notFound') 
 
 #class annotationCreate(CreateView):
 #    model = Anotacion
@@ -55,15 +68,17 @@ def annotationCreate(request, id):
     #print(id)
     #return HttpResponseRedirect(reverse('citas'))
     #return render(request,'citas/cita_detail.html')
-    
-    form = AnotacionForm(request.POST)
-    
-    if form.is_valid():
-        anotacion = form.save(commit=False)
-        fecha = datetime.now()
-        anotacion.fecha_hora = fecha
-        cita = Cita.objects.get(id=id)
-        anotacion.id_cita = cita
-        anotacion.save()
+    if request.user.is_authenticated:    
+        form = AnotacionForm(request.POST)
+        
+        if form.is_valid():
+            anotacion = form.save(commit=False)
+            fecha = datetime.now()
+            anotacion.fecha_hora = fecha
+            cita = Cita.objects.get(id=id)
+            anotacion.id_cita = cita
+            anotacion.save()
 
-    return HttpResponseRedirect('/citas/'+id)
+        return HttpResponseRedirect('/citas/'+id)
+    else:
+        return redirect('notFound')

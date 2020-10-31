@@ -62,4 +62,5 @@ urlpatterns = [
     path('chartJSON', line_chart_json, name='line_chart_json'),
     path('chartMonth', line_chart_month, name='chartMonth'),
     path('chartMonthJSON', line_chart_month_json, name='line_chart_month_json'),
+    path('notFound', notFound, name='notFound'),
 ]

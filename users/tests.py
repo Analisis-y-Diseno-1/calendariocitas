@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase,SimpleTestCase
 from django.urls import reverse, resolve
 from django.contrib.auth import get_user_model
 from users.models import Paciente
@@ -144,3 +144,4 @@ class GraphicReport(TestCase):
         meses = [0,0,0,0,0,0,0,0,0,0,0,0]
         self.assertEquals(g_get_data(1), [meses])
         self.assertEquals(g_get_data(9), 0)
+

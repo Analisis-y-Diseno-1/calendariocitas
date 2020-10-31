@@ -28,7 +28,6 @@
 				<td>{{ examen.descripcion }}</td>
 				<td>{{ examen.cita.paciente.nombre }} {{ examen.cita.paciente.apellido }}</td>
 				<td>
-					<a class="btn btn-primary" >Modificar</a>
 					<a class="btn btn-danger" href="{% url 'eliminar_examen' examen.id %}">Eliminar</a>
 				</td>
 			</tr>

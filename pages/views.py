@@ -115,6 +115,8 @@ class SearchResultsListView(LoginRequiredMixin,ListView):
 
         return context
 
+
+
 # def modificar_cita(request, pk):
 #     query = request.POST
 #     if Cita.objects.filter(id=pk).exists():

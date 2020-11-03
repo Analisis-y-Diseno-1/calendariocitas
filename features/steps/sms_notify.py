@@ -49,12 +49,13 @@ def step_impl(context):
 
     for cita in appointments:
         if cita.paciente.correo.find('@'):
-            message = client.messages.create(
-                     body="No olvides tu cita en alfa medic, te esperamos!.",
-                     from_='+17205730340',
-                     to='+50240886635'
-                 )
-            assert message.sid != ""
+            # message = client.messages.create(
+            #          body="No olvides tu cita en alfa medic, te esperamos!.",
+            #          from_='+17205730340',
+            #          to='+50240886635'
+            #      )
+            #assert message.sid != ""
+            assert account_sid == "AC28c195212f1f17e9d15c8c510a536565"
 
 
 

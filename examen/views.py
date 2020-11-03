@@ -50,14 +50,14 @@ def ExaminationActionCreate(request, pk):
 
 
 def ExaminationListView(request):
-    if request.user.is_authenticated:
+    #if request.user.is_authenticated:
         Examenes=Examen.objects.all()
         data={
             'lista_examenes':Examenes
         }
         return render(request, 'examen/listado_examenes.html',data)
-    else:
-        return redirect('notFound') 
+    #else:
+        #return redirect('notFound') 
 
 
 

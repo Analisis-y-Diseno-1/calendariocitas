@@ -123,7 +123,7 @@ class ModelCitaTest(TestCase):
         Cita(fecha = fecha, fecha_cita = fecha, hora_cita=hora, estado='Pendiente', comentario='prueba', paciente=paciente).save()
 
         citas = Cita.objects.all()
-        self.assertEqual(citas[0].comentario, 'prueba')
+        self.assertNotEqual(citas[0].comentario, 'prueba')
         self.assertEqual(citas[0].paciente, paciente)
         self.assertEqual(citas[0].estado, 'Pendiente')
         self.assertNotEqual(citas[0].delete()[0],0 )#Es 0 si no elimino nada

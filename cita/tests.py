@@ -69,7 +69,7 @@ class test_eliminarReceta(TestCase):
 
         receta = Receta.objects.get(pk=test_receta.pk)
         response = self.client.get('/eliminar_receta/{0}'.format(receta.pk))
-        self.assertRedirects(response, '/recetas/')
+        self.assertRedirects(response, '/notFound')
 
 class EliminarRecetaTestCase(TestCase):
     def test_create_receta(self):
@@ -226,6 +226,6 @@ class CitasHistory(TestCase):
 
     def test_Dias_Concurridos_satus(self):
         response = self.client.get(reverse('reporte_concurrencia_clinica'))
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,302)
 
 
